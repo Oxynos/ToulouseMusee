@@ -5,4 +5,9 @@ class Gestionnaire {
 
     static constraints = {
     }
+
+    @Override
+    String toString() {
+        return "$nom"
+    }
 }

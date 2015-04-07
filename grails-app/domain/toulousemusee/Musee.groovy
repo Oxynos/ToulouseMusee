@@ -16,4 +16,6 @@ class Musee {
         telephone nullable: false, blank: false
         gestionnaire nullable: false, blank: false
     }
+
+
 }
