@@ -8,6 +8,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class MuseeController {
 
+    MuseeService museeService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
@@ -100,5 +102,11 @@ class MuseeController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def doResearch() {
+
+        List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
+        respond musees
     }
 }

@@ -84,16 +84,17 @@
 	<body>
 		<div id="page-body" role="main">
 
-			<!--g:form name="searchMusee" action="doResearch" id="1"-->
+			<g:form name="searchMusee" action="doResearch" method="get" controller="musee">
 				<table>
 					<tr><td>Nom du Musée (ou une partie)</td>
 						<td><g:textField name="musee"/></td></tr>
-					<tr><td>CodePostal</td>
-						<td><g:select name="toulousemusee.Adresse.codePostal" from="${toulousemusee.Musee.list()*.adresse.codePostal}"/></td></tr>
+					<tr><td>Code Postal</td>
+						<td><g:select name="codePostal" from="${toulousemusee.Musee.list()*.adresse.codePostal}"/></td></tr>
 					<tr><td>Adresse du musée (ou une partie)</td>
 						<td><g:textField name="adresseMusee"/></td></tr>
+					<tr><td><g:submitButton name="rechercher" value="Rechercher"/></td></tr>
 				</table>
-			<!--/g:form-->
+			</g:form>
 
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>

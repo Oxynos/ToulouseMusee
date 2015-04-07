@@ -13,7 +13,8 @@ class Adresse {
         ville nullable: false, blank: false
     }
 
+    @Override
     String toString() {
-        numero + ", " + rue
+        return "$numero $rue, $codePostal $ville"
     }
 }
