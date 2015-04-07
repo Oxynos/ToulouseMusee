@@ -16,4 +16,13 @@ class Musee {
         telephone nullable: false, blank: false
         gestionnaire nullable: false, blank: false
     }
+
+    static belongsTo = [
+            adresse: Adresse,
+            gestionnaire: Gestionnaire
+    ]
+
+    String toString() {
+        nom
+    }
 }

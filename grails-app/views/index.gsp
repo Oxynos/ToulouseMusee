@@ -1,4 +1,4 @@
-<%@ page import="toulousemusee.Musee" %>
+<%@ page import="toulousemusee.Musee; toulousemusee.Adresse" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -89,7 +89,7 @@
 					<tr><td>Nom du Musée (ou une partie)</td>
 						<td><g:textField name="musee"/></td></tr>
 					<tr><td>CodePostal</td>
-						<td><g:select name="MuseeName" from="${Musee.all*.adresse.codePostal}" optionKey="MuseeName" optionValue="MuseeName"/></td></tr>
+						<td><g:select name="toulousemusee.Adresse.codePostal" from="${toulousemusee.Musee.list()*.adresse.codePostal}"/></td></tr>
 					<tr><td>Adresse du musée (ou une partie)</td>
 						<td><g:textField name="adresseMusee"/></td></tr>
 				</table>

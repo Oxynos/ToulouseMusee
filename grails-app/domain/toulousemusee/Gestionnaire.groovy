@@ -4,5 +4,10 @@ class Gestionnaire {
     String nom
 
     static constraints = {
+        nom nullable: false, blank: false
+    }
+
+    String toString() {
+        nom
     }
 }
