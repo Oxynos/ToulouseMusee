@@ -16,7 +16,7 @@
 		<g:message code="adresse.numero.label" default="Numero" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:field name="numero" type="number" value="${adresseInstance.numero}" required=""/>
+	<g:textField name="numero" required="" value="${adresseInstance?.numero}"/>
 
 </div>
 

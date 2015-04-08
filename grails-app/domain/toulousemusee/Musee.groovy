@@ -8,6 +8,7 @@ class Musee {
     String accesMetro
     String accesBus
     Gestionnaire gestionnaire
+    //String siteWeb
 
     static constraints = {
         nom nullable: false, blank: false
@@ -17,12 +18,10 @@ class Musee {
         gestionnaire nullable: false, blank: false
     }
 
-    static belongsTo = [
-            adresse: Adresse,
-            gestionnaire: Gestionnaire
-    ]
-
+    @Override
     String toString() {
-        nom
+        return "$nom ($gestionnaire)\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
+        //return "$nom ($gestionnaire)\n$siteWeb\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
     }
+
 }

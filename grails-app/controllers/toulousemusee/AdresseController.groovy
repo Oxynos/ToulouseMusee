@@ -1,6 +1,7 @@
 package toulousemusee
 
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -11,7 +12,7 @@ class AdresseController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Adresse.list(params), model: [adresseInstanceCount: Adresse.count()]
+        respond Adresse.list(params), model:[adresseInstanceCount: Adresse.count()]
     }
 
     def show(Adresse adresseInstance) {
@@ -30,11 +31,11 @@ class AdresseController {
         }
 
         if (adresseInstance.hasErrors()) {
-            respond adresseInstance.errors, view: 'create'
+            respond adresseInstance.errors, view:'create'
             return
         }
 
-        adresseInstance.save flush: true
+        adresseInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -57,18 +58,18 @@ class AdresseController {
         }
 
         if (adresseInstance.hasErrors()) {
-            respond adresseInstance.errors, view: 'edit'
+            respond adresseInstance.errors, view:'edit'
             return
         }
 
-        adresseInstance.save flush: true
+        adresseInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Adresse.label', default: 'Adresse'), adresseInstance.id])
                 redirect adresseInstance
             }
-            '*' { respond adresseInstance, [status: OK] }
+            '*'{ respond adresseInstance, [status: OK] }
         }
     }
 
@@ -80,14 +81,14 @@ class AdresseController {
             return
         }
 
-        adresseInstance.delete flush: true
+        adresseInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Adresse.label', default: 'Adresse'), adresseInstance.id])
-                redirect action: "index", method: "GET"
+                redirect action:"index", method:"GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -97,7 +98,7 @@ class AdresseController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'adresse.label', default: 'Adresse'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }
