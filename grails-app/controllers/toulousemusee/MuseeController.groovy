@@ -122,7 +122,8 @@ class MuseeController {
             session["musees"] = new ArrayList<Musee>()
             session["musees"].add(Musee.findById(params.id))
         }
-        
-        redirect action: "index", method: "POST"
+
+        println session["musees"]?.contains(Musee.findById(params.id))
+        redirect(uri: '/')
     }
 }

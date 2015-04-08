@@ -104,9 +104,17 @@
 
 
 						<td><g:form controller="musee">
+							${session["musees"]?.get(0)?.id}
+							${museeInstance.id}
+							${session["musees"]?.contains(museeInstance)}
+							<g:set var="j" value="${session["musees"]?.get(0)?.id == museeInstance.id}"/>
 							<g:hiddenField name="id" value="${museeInstance.id}"/>
 							<g:actionSubmit value="Ajouter aux favoris"
-											onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"/></g:form></td>
+											onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
+											disabled="${j}"/>
+							${j}
+							</g:form>
+						</td>
 
 					</tr>
 				</g:each>
