@@ -83,6 +83,35 @@
 	</head>
 	<body>
 		<div id="page-body" role="main">
+			<table>
+				<tbody>
+				<g:each in="${toulousemusee.Musee.list().getAt(0..2)}" status="i" var="museeInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+						<td>${fieldValue(bean: museeInstance, field: "nom")}</td>
+
+						<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
+
+						<td>${fieldValue(bean: museeInstance, field: "horairesOuverture")}</td>
+
+						<td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
+
+						<td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
+
+						<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
+
+						<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
+
+
+						<td><g:form controller="musee">
+							<g:hiddenField name="id" value="${museeInstance.id}"/>
+							<g:actionSubmit value="Ajouter aux favoris"
+											onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"/></g:form></td>
+
+					</tr>
+				</g:each>
+				</tbody>
+			</table>
 			<g:form name="searchMusee" action="doResearch" method="post" controller="musee">
 			<table>
 				<tr><td>Nom du Musée (ou une partie)</td>

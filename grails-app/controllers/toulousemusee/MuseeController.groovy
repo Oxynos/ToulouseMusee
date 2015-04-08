@@ -107,4 +107,22 @@ class MuseeController {
             '*' { render status: NOT_FOUND }
         }
     }
+
+    def doResearch() {
+        List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
+        respond musees
+    }
+
+    def addMusee() {
+        List<Musee> musees = session["musees"]
+
+        if (musees){
+            musees.add(Musee.findById(params.id))
+        }else{
+            session["musees"] = new ArrayList<Musee>()
+            session["musees"].add(Musee.findById(params.id))
+        }
+        
+        redirect action: "index", method: "POST"
+    }
 }
