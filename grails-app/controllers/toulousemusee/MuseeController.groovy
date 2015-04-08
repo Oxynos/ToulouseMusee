@@ -86,8 +86,8 @@ class MuseeController {
             return
         }
 
-        museeService.deleteMusee(museeInstance)
         //museeInstance.delete flush: true
+        museeService.deleteMusee(museeInstance)
 
         request.withFormat {
             form multipartForm {
@@ -106,11 +106,5 @@ class MuseeController {
             }
             '*' { render status: NOT_FOUND }
         }
-    }
-
-    def doResearch() {
-
-        List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
-        respond musees
     }
 }

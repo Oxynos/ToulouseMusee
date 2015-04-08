@@ -31,6 +31,16 @@ class JeuTestService {
             }
             if (gest == null) gest = new Gestionnaire(nom: tokens[1]).save()
 
+            /*String cp
+            List<String> lcp = Adresse.getAll().codePostal
+            for (String codeP : lcp) {
+                if (codeP == tokens[9]) {
+                    cp = codeP
+                }
+            }
+            if (cp == null) cp = tokens[9]
+            Adresse adr = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: cp, ville: tokens[10]).save()*/
+
             Adresse adr
             List<Adresse> la = Adresse.getAll()
             for (Adresse a : la) {

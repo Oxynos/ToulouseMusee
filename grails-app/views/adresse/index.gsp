@@ -24,11 +24,11 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="codePostal" title="${message(code: 'adresse.codePostal.label', default: 'Code Postal')}" />
-					
 						<g:sortableColumn property="numero" title="${message(code: 'adresse.numero.label', default: 'Numero')}" />
 					
 						<g:sortableColumn property="rue" title="${message(code: 'adresse.rue.label', default: 'Rue')}" />
+					
+						<g:sortableColumn property="codePostal" title="${message(code: 'adresse.codePostal.label', default: 'Code Postal')}" />
 					
 						<g:sortableColumn property="ville" title="${message(code: 'adresse.ville.label', default: 'Ville')}" />
 					
@@ -38,11 +38,11 @@
 				<g:each in="${adresseInstanceList}" status="i" var="adresseInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${adresseInstance.id}">${fieldValue(bean: adresseInstance, field: "codePostal")}</g:link></td>
-					
-						<td>${fieldValue(bean: adresseInstance, field: "numero")}</td>
+						<td><g:link action="show" id="${adresseInstance.id}">${fieldValue(bean: adresseInstance, field: "numero")}</g:link></td>
 					
 						<td>${fieldValue(bean: adresseInstance, field: "rue")}</td>
+					
+						<td>${fieldValue(bean: adresseInstance, field: "codePostal")}</td>
 					
 						<td>${fieldValue(bean: adresseInstance, field: "ville")}</td>
 					
