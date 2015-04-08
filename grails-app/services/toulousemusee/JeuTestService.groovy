@@ -22,15 +22,31 @@ class JeuTestService {
                     accesMetro: tokens[5],
                     accesBus: tokens[6],
                     adresse: ad)*/
-            Gestionnaire g = new Gestionnaire(nom: tokens[1]).save()
-            Adresse a = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: tokens[9], ville: tokens[10]).save()
+            Gestionnaire gest
+            List<Gestionnaire> lg = Gestionnaire.getAll()
+            for (Gestionnaire g : lg) {
+                if (g.nom == tokens[1]) {
+                    gest = g
+                }
+            }
+            if (gest == null) gest = new Gestionnaire(nom: tokens[1]).save()
+
+            Adresse adr
+            List<Adresse> la = Adresse.getAll()
+            for (Adresse a : la) {
+                if (a.numero == tokens[7] && a.rue == tokens[8] && a.codePostal == tokens[9] && a.ville == tokens[10]) {
+                    adr = a
+                }
+            }
+            if (adr == null) adr = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: tokens[9], ville: tokens[10]).save()
+
             Musee musee = new Musee(nom: tokens[0],
-                    gestionnaire: g,
+                    gestionnaire: gest,
                     horairesOuverture: tokens[2],
                     telephone: tokens[4],
                     accesMetro: tokens[5],
                     accesBus: tokens[6],
-                    adresse: a).save()
+                    adresse: adr).save()
             println(" ")
             println(musee)
         }
