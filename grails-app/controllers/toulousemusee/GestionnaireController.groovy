@@ -1,6 +1,7 @@
 package toulousemusee
 
 
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -11,7 +12,7 @@ class GestionnaireController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Gestionnaire.list(params), model: [gestionnaireInstanceCount: Gestionnaire.count()]
+        respond Gestionnaire.list(params), model:[gestionnaireInstanceCount: Gestionnaire.count()]
     }
 
     def show(Gestionnaire gestionnaireInstance) {
@@ -30,11 +31,11 @@ class GestionnaireController {
         }
 
         if (gestionnaireInstance.hasErrors()) {
-            respond gestionnaireInstance.errors, view: 'create'
+            respond gestionnaireInstance.errors, view:'create'
             return
         }
 
-        gestionnaireInstance.save flush: true
+        gestionnaireInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -57,18 +58,18 @@ class GestionnaireController {
         }
 
         if (gestionnaireInstance.hasErrors()) {
-            respond gestionnaireInstance.errors, view: 'edit'
+            respond gestionnaireInstance.errors, view:'edit'
             return
         }
 
-        gestionnaireInstance.save flush: true
+        gestionnaireInstance.save flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'Gestionnaire.label', default: 'Gestionnaire'), gestionnaireInstance.id])
                 redirect gestionnaireInstance
             }
-            '*' { respond gestionnaireInstance, [status: OK] }
+            '*'{ respond gestionnaireInstance, [status: OK] }
         }
     }
 
@@ -80,14 +81,14 @@ class GestionnaireController {
             return
         }
 
-        gestionnaireInstance.delete flush: true
+        gestionnaireInstance.delete flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'Gestionnaire.label', default: 'Gestionnaire'), gestionnaireInstance.id])
-                redirect action: "index", method: "GET"
+                redirect action:"index", method:"GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -97,7 +98,7 @@ class GestionnaireController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'gestionnaire.label', default: 'Gestionnaire'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

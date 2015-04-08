@@ -1,6 +1,7 @@
 package toulousemusee
 
 class Adresse {
+
     String numero
     String rue
     String codePostal
@@ -13,10 +14,10 @@ class Adresse {
     double y_wgs84*/
 
     static constraints = {
-        numero nullable: false
-        rue nullable: false, blank: false
-        codePostal nullable: false
-        ville nullable: false, blank: false
+        numero nullable: true
+        rue nullable: true
+        codePostal nullable: true
+        ville blank: false
     }
 
     @Override

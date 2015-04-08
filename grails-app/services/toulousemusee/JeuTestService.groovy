@@ -1,15 +1,71 @@
 package toulousemusee
 
 import grails.transaction.Transactional
-import org.grails.plugins.csv.CSVMapReader
 
 @Transactional
 class JeuTestService {
 
+    Musee unMusee
+    Musee musee1
+    Musee musee2
+    Musee musee3
+
+    Gestionnaire unGestionnaire
+    Gestionnaire gestionnaire1
+    Gestionnaire gestionnaire2
+
+    Adresse uneAdresse
+    Adresse adresse1
+    Adresse adresse2
+    Adresse adresse3
+
+    MuseeService museeService
+
     def createJeuTestForMusee() {
+        if (Musee.count() == 0) {
+            gestionnaire1 = new Gestionnaire(nom: "Mairie de Toulouse")
+            adresse1 = new Adresse(numero: "11B", rue: "rue aaa", ville: "Toulouse", codePostal: "31000").save()
+            musee1 = museeService.insertOrUpdateMuseeForGestionnaire(new Musee(nom: "Musée medecine", horairesOuverture: "Ouvert de à", adresse: adresse1), gestionnaire1)
+
+        }
+    }
+
+    def createJeuTestForGestionnaires() {
+        if (Gestionnaire.count() == 0) {
+            gestionnaire2 = new Gestionnaire(nom: "Dupond").save()
+        }
+    }
+
+
+    def createJeuTest() {
+
         def csv = new File("src/main/resources/Musee.csv")
 
         csv.toCsvReader(['separatorChar':';', 'skipLines':1]).eachLine { tokens ->
+
+            uneAdresse = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: tokens[9], ville: tokens[10]).save()
+
+            unGestionnaire = null
+            List<Gestionnaire> listeGestionnaires = Gestionnaire.getAll()
+            for (Gestionnaire gestionnaire : listeGestionnaires) {
+                if (gestionnaire.nom == tokens[1]) {
+                    unGestionnaire = gestionnaire
+                }
+            }
+            if (unGestionnaire == null) unGestionnaire = new Gestionnaire(nom: tokens[1])
+
+            unMusee = new Musee(nom: tokens[0],
+                    horairesOuverture: tokens[2],
+                    telephone: tokens[4],
+                    accesMetro: tokens[5],
+                    accesBus: tokens[6],
+                    adresse: uneAdresse)
+
+            museeService.insertOrUpdateMuseeForGestionnaire(unMusee, unGestionnaire)
+
+            println(" ")
+            println(unMusee)
+
             /*println(tokens)
             Adresse a = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: tokens[9], ville: tokens[10],
                     secteur: tokens[11], quartier: tokens[12],
@@ -22,43 +78,6 @@ class JeuTestService {
                     accesMetro: tokens[5],
                     accesBus: tokens[6],
                     adresse: ad)*/
-            Gestionnaire gest
-            List<Gestionnaire> lg = Gestionnaire.getAll()
-            for (Gestionnaire g : lg) {
-                if (g.nom == tokens[1]) {
-                    gest = g
-                }
-            }
-            if (gest == null) gest = new Gestionnaire(nom: tokens[1]).save()
-
-            /*String cp
-            List<String> lcp = Adresse.getAll().codePostal
-            for (String codeP : lcp) {
-                if (codeP == tokens[9]) {
-                    cp = codeP
-                }
-            }
-            if (cp == null) cp = tokens[9]
-            Adresse adr = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: cp, ville: tokens[10]).save()*/
-
-            Adresse adr
-            List<Adresse> la = Adresse.getAll()
-            for (Adresse a : la) {
-                if (a.numero == tokens[7] && a.rue == tokens[8] && a.codePostal == tokens[9] && a.ville == tokens[10]) {
-                    adr = a
-                }
-            }
-            if (adr == null) adr = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: tokens[9], ville: tokens[10]).save()
-
-            Musee musee = new Musee(nom: tokens[0],
-                    gestionnaire: gest,
-                    horairesOuverture: tokens[2],
-                    telephone: tokens[4],
-                    accesMetro: tokens[5],
-                    accesBus: tokens[6],
-                    adresse: adr).save()
-            println(" ")
-            println(musee)
         }
     }
 }

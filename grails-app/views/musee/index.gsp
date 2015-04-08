@@ -26,15 +26,15 @@
 					
 						<g:sortableColumn property="nom" title="${message(code: 'musee.nom.label', default: 'Nom')}" />
 					
-						<th><g:message code="musee.adresse.label" default="Adresse" /></th>
-					
 						<g:sortableColumn property="horairesOuverture" title="${message(code: 'musee.horairesOuverture.label', default: 'Horaires Ouverture')}" />
 					
 						<g:sortableColumn property="telephone" title="${message(code: 'musee.telephone.label', default: 'Telephone')}" />
 					
-						<th><g:message code="musee.gestionnaire.label" default="Gestionnaire" /></th>
-					
 						<g:sortableColumn property="accesBus" title="${message(code: 'musee.accesBus.label', default: 'Acces Bus')}" />
+					
+						<g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Metro')}" />
+					
+						<th><g:message code="musee.adresse.label" default="Adresse" /></th>
 					
 					</tr>
 				</thead>
@@ -44,15 +44,15 @@
 					
 						<td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nom")}</g:link></td>
 					
-						<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
-					
 						<td>${fieldValue(bean: museeInstance, field: "horairesOuverture")}</td>
 					
 						<td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
 					
-						<td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
-					
 						<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
+					
+						<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
+					
+						<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
 					
 					</tr>
 				</g:each>

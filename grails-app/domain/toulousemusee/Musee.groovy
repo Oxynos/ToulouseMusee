@@ -1,21 +1,25 @@
 package toulousemusee
 
 class Musee {
+
     String nom
-    Adresse adresse
     String horairesOuverture
     String telephone
     String accesMetro
     String accesBus
-    Gestionnaire gestionnaire
     //String siteWeb
 
+    Adresse adresse
+
+    Gestionnaire gestionnaire
+
     static constraints = {
-        nom nullable: false, blank: false
-        adresse nullable: false, blank: false
-        horairesOuverture nullable: false, blank: false
-        telephone nullable: false, blank: false
-        gestionnaire nullable: false, blank: false
+        nom blank: false
+        horairesOuverture nullable: true
+        telephone nullable: true
+        accesBus nullable: true
+        accesMetro nullable: true
+        adresse nullable: true
     }
 
     @Override
@@ -23,5 +27,4 @@ class Musee {
         return "$nom ($gestionnaire)\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
         //return "$nom ($gestionnaire)\n$siteWeb\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
     }
-
 }

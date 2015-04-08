@@ -11,30 +11,48 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'adresse', 'error')} required">
-	<label for="adresse">
-		<g:message code="musee.adresse.label" default="Adresse" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:select id="adresse" name="adresse.id" from="${toulousemusee.Adresse.list()}" optionKey="id" required="" value="${museeInstance?.adresse?.id}" class="many-to-one"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'horairesOuverture', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'horairesOuverture', 'error')} ">
 	<label for="horairesOuverture">
 		<g:message code="musee.horairesOuverture.label" default="Horaires Ouverture" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="horairesOuverture" required="" value="${museeInstance?.horairesOuverture}"/>
+	<g:textField name="horairesOuverture" value="${museeInstance?.horairesOuverture}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'telephone', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'telephone', 'error')} ">
 	<label for="telephone">
 		<g:message code="musee.telephone.label" default="Telephone" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="telephone" required="" value="${museeInstance?.telephone}"/>
+	<g:textField name="telephone" value="${museeInstance?.telephone}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesBus', 'error')} ">
+	<label for="accesBus">
+		<g:message code="musee.accesBus.label" default="Acces Bus" />
+		
+	</label>
+	<g:textField name="accesBus" value="${museeInstance?.accesBus}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesMetro', 'error')} ">
+	<label for="accesMetro">
+		<g:message code="musee.accesMetro.label" default="Acces Metro" />
+		
+	</label>
+	<g:textField name="accesMetro" value="${museeInstance?.accesMetro}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'adresse', 'error')} ">
+	<label for="adresse">
+		<g:message code="musee.adresse.label" default="Adresse" />
+		
+	</label>
+	<g:select id="adresse" name="adresse.id" from="${toulousemusee.Adresse.list()}" optionKey="id" value="${museeInstance?.adresse?.id}" class="many-to-one" noSelection="['null': '']"/>
 
 </div>
 
@@ -44,24 +62,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:select id="gestionnaire" name="gestionnaire.id" from="${toulousemusee.Gestionnaire.list()}" optionKey="id" required="" value="${museeInstance?.gestionnaire?.id}" class="many-to-one"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesBus', 'error')} required">
-	<label for="accesBus">
-		<g:message code="musee.accesBus.label" default="Acces Bus" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="accesBus" required="" value="${museeInstance?.accesBus}"/>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: museeInstance, field: 'accesMetro', 'error')} required">
-	<label for="accesMetro">
-		<g:message code="musee.accesMetro.label" default="Acces Metro" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="accesMetro" required="" value="${museeInstance?.accesMetro}"/>
 
 </div>
 

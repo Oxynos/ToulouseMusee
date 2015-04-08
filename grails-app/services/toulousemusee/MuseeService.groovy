@@ -1,25 +1,29 @@
 package toulousemusee
 
-import grails.transaction.Transactional
+import org.springframework.transaction.annotation.Transactional
+
 
 @Transactional
 class MuseeService {
+
     /**
-     * Cree un nouveau musee
-     * @param unMusee le musee
-     * @param unGestionnaire le gestionnaire du musee
-     * @return le musee créé
+     * Crée un nouveau musée
+     * @param unMusee le musée
+     * @param unGestionnaire le gestionnaire du musée
+     * @return le musée créé
      */
     Musee insertOrUpdateMuseeForGestionnaire(Musee unMusee, Gestionnaire unGestionnaire) {
         unGestionnaire.addToMusees(unMusee)
-        println(unMusee.nom +" " +  unGestionnaire.nom)
+        // note
+        // le flush: true n'est pas nécessaire pour que le test d'intégration passe mais est
+        // nécessaire pour que l'appel venant du contrôleur fonctionne comme attendu
         unGestionnaire.save(flush: true)
         unMusee
     }
 
     /**
-     * Supprime un musee
-     * @param unMusee le musee à supprimer
+     * Supprime un musée
+     * @param unMusee le musée à supprimer
      */
     void deleteMusee(Musee unMusee) {
         unMusee.gestionnaire.removeFromMusees(unMusee)
@@ -32,7 +36,7 @@ class MuseeService {
             if (name) {
                 if (codeP) {
                     adresse {
-                        like("codePostal", codeP.toInteger())
+                        like("codePostal", "$codeP")
                     }
                 }
                 if (adress) {
@@ -45,7 +49,7 @@ class MuseeService {
 
             if (codeP) {
                 adresse {
-                    like("codePostal", codeP.toInteger())
+                    like("codePostal", "$codeP")
                 }
                 if (adress) {
                     adresse {
@@ -63,7 +67,7 @@ class MuseeService {
                 }
                 if (codeP) {
                     adresse {
-                        like("codePostal", codeP.toInteger())
+                        like("codePostal", "$codeP")
                     }
                 }
                 if (name) {

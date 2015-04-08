@@ -3,23 +3,29 @@ package toulousemusee
 import grails.test.spock.IntegrationSpec
 import spock.lang.*
 
-class MuseeServiceIntegrationTestIntegrationSpec extends IntegrationSpec {
+class MuseeServiceIntegrationTestIntegrationSpec extends Specification {
+
+    Adresse uneAdresse
+    Gestionnaire unGestionnaire
 
     MuseeService museeService
 
-    @Unroll
+    def setup() {
+        uneAdresse = new Adresse(numero: "4 Bis", rue: "rue de la verge d'or", codePostal: "31000", ville: "Toulouse").save()
+        unGestionnaire = new Gestionnaire(nom: "Mairie de Toulouse")
+    }
+
     void "test mise a jour et l'insertion d'un musee"() {
 
-        given: "un gestionnaire"
-        Gestionnaire unGestionnaire = new Gestionnaire(nom: "M. Gestion")
-
-        and: "un musee"
-        Musee unMusee = new Musee(nom: "Musee",
-                adresse: "8, rue Machin",
-                telephone: "0505050550",
-                gestionnaire: unGestionnaire,
+        given: "un musee"
+        Musee unMusee = new Musee(nom: "Musée de l'informatique",
+                horairesOuverture: "OUVERT",
+                adresse: uneAdresse,
+                telephone: "05 05 05 05 50",
                 accesBus: "Par là",
                 accesMetro: "Par ici")
+
+        and: "un gestionnaire"
 
         when: "on tente de répercuter en base la création ou la modification du musée"
         Musee resultMusee = museeService.insertOrUpdateMuseeForGestionnaire(unMusee, unGestionnaire)
@@ -40,7 +46,6 @@ class MuseeServiceIntegrationTestIntegrationSpec extends IntegrationSpec {
         resultMusee.gestionnaire == unGestionnaire
     }
 
-    @Unroll
     void "test du moteur de recherche sur les musées"() {
 
 

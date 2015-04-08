@@ -2,30 +2,30 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'numero', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'numero', 'error')} ">
 	<label for="numero">
 		<g:message code="adresse.numero.label" default="Numero" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="numero" required="" value="${adresseInstance?.numero}"/>
+	<g:textField name="numero" value="${adresseInstance?.numero}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'rue', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'rue', 'error')} ">
 	<label for="rue">
 		<g:message code="adresse.rue.label" default="Rue" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="rue" required="" value="${adresseInstance?.rue}"/>
+	<g:textField name="rue" value="${adresseInstance?.rue}"/>
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'codePostal', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'codePostal', 'error')} ">
 	<label for="codePostal">
 		<g:message code="adresse.codePostal.label" default="Code Postal" />
-		<span class="required-indicator">*</span>
+		
 	</label>
-	<g:textField name="codePostal" required="" value="${adresseInstance?.codePostal}"/>
+	<g:textField name="codePostal" value="${adresseInstance?.codePostal}"/>
 
 </div>
 
