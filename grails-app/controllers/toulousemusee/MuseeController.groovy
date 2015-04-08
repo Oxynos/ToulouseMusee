@@ -65,7 +65,8 @@ class MuseeController {
         }
 
         //museeInstance.save flush: true
-        museeService.insertOrUpdateMuseeForGestionnaire(museeInstance, museeInstance.gestionnaire)
+        Gestionnaire gestionnaire = Gestionnaire.get(museeInstance.gestionnaireId)
+        museeService.insertOrUpdateMuseeForGestionnaire(museeInstance, gestionnaire)
 
         request.withFormat {
             form multipartForm {
@@ -84,7 +85,7 @@ class MuseeController {
             return
         }
 
-        //museeInstance.delete flush:
+        //museeInstance.delete flush: true
         museeService.deleteMusee(museeInstance)
 
         request.withFormat {
@@ -104,10 +105,5 @@ class MuseeController {
             }
             '*' { render status: NOT_FOUND }
         }
-    }
-
-    def doResearch() {
-        List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
-        respond musees
     }
 }

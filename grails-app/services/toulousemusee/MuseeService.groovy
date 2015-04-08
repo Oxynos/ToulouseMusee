@@ -1,7 +1,6 @@
 package toulousemusee
 
-import org.springframework.transaction.annotation.Transactional
-
+import grails.transaction.Transactional
 
 @Transactional
 class MuseeService {
@@ -36,7 +35,7 @@ class MuseeService {
             if (name) {
                 if (codeP) {
                     adresse {
-                        like("codePostal", "$codeP")
+                        like("codePostal", codeP)
                     }
                 }
                 if (adress) {
@@ -49,7 +48,7 @@ class MuseeService {
 
             if (codeP) {
                 adresse {
-                    like("codePostal", "$codeP")
+                    like("codePostal", codeP)
                 }
                 if (adress) {
                     adresse {
@@ -67,7 +66,7 @@ class MuseeService {
                 }
                 if (codeP) {
                     adresse {
-                        like("codePostal", "$codeP")
+                        like("codePostal", codeP)
                     }
                 }
                 if (name) {
