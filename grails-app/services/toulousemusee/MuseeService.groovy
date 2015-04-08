@@ -12,6 +12,7 @@ class MuseeService {
      */
     Musee insertOrUpdateMuseeForGestionnaire(Musee unMusee, Gestionnaire unGestionnaire) {
         unGestionnaire.addToMusees(unMusee)
+        println(unMusee.nom +" " +  unGestionnaire.nom)
         unGestionnaire.save(flush: true)
         unMusee
     }
