@@ -3,7 +3,7 @@ package toulousemusee
 class Adresse {
     String numero
     String rue
-    int codePostal
+    String codePostal
     String ville
     /*String secteur
     String quartier

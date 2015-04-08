@@ -2,15 +2,6 @@
 
 
 
-<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'codePostal', 'error')} required">
-	<label for="codePostal">
-		<g:message code="adresse.codePostal.label" default="Code Postal" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field name="codePostal" type="number" value="${adresseInstance.codePostal}" required=""/>
-
-</div>
-
 <div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'numero', 'error')} required">
 	<label for="numero">
 		<g:message code="adresse.numero.label" default="Numero" />
@@ -26,6 +17,15 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="rue" required="" value="${adresseInstance?.rue}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: adresseInstance, field: 'codePostal', 'error')} required">
+	<label for="codePostal">
+		<g:message code="adresse.codePostal.label" default="Code Postal" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="codePostal" required="" value="${adresseInstance?.codePostal}"/>
 
 </div>
 

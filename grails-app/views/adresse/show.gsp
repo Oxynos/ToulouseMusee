@@ -23,15 +23,6 @@
 			</g:if>
 			<ol class="property-list adresse">
 			
-				<g:if test="${adresseInstance?.codePostal}">
-				<li class="fieldcontain">
-					<span id="codePostal-label" class="property-label"><g:message code="adresse.codePostal.label" default="Code Postal" /></span>
-					
-						<span class="property-value" aria-labelledby="codePostal-label"><g:fieldValue bean="${adresseInstance}" field="codePostal"/></span>
-					
-				</li>
-				</g:if>
-			
 				<g:if test="${adresseInstance?.numero}">
 				<li class="fieldcontain">
 					<span id="numero-label" class="property-label"><g:message code="adresse.numero.label" default="Numero" /></span>
@@ -46,6 +37,15 @@
 					<span id="rue-label" class="property-label"><g:message code="adresse.rue.label" default="Rue" /></span>
 					
 						<span class="property-value" aria-labelledby="rue-label"><g:fieldValue bean="${adresseInstance}" field="rue"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${adresseInstance?.codePostal}">
+				<li class="fieldcontain">
+					<span id="codePostal-label" class="property-label"><g:message code="adresse.codePostal.label" default="Code Postal" /></span>
+					
+						<span class="property-value" aria-labelledby="codePostal-label"><g:fieldValue bean="${adresseInstance}" field="codePostal"/></span>
 					
 				</li>
 				</g:if>

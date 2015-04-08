@@ -32,6 +32,17 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${gestionnaireInstance?.musees}">
+				<li class="fieldcontain">
+					<span id="musees-label" class="property-label"><g:message code="gestionnaire.musees.label" default="Musees" /></span>
+					
+						<g:each in="${gestionnaireInstance.musees}" var="m">
+						<span class="property-value" aria-labelledby="musees-label"><g:link controller="musee" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:gestionnaireInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
