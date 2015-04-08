@@ -83,7 +83,7 @@
 	</head>
 	<body>
 		<div id="page-body" role="main">
-			<g:form name="searchMusee" action="doResearch" method="get" controller="musee">
+			<g:form name="searchMusee" action="doResearch" method="post" controller="musee">
 			<table>
 				<tr><td>Nom du Musée (ou une partie)</td>
 					<td><g:textField name="musee"/></td></tr>
