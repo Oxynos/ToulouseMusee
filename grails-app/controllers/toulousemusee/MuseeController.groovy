@@ -105,7 +105,6 @@ class MuseeController {
     }
 
     def doResearch() {
-        println("doResearch")
         List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
         //render(view: '../index', model: [museeInstanceList: musees, museeInstanceCount: musees.size()])
         respond musees
@@ -121,8 +120,6 @@ class MuseeController {
         }
 
         println session["musees"].contains(Musee.findById(params.id))
-        //render(view: '../index')
-        redirect(uri:  "/")
-
+        redirect(uri: '/')
     }
 }

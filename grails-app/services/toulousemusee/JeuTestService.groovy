@@ -64,7 +64,7 @@ class JeuTestService {
             museeService.insertOrUpdateMuseeForGestionnaire(unMusee, unGestionnaire)
 
             println(" ")
-            println(unMusee)
+            //println(unMusee)
 
             /*println(tokens)
             Adresse a = new Adresse(numero: tokens[7], rue: tokens[8], codePostal: tokens[9], ville: tokens[10],

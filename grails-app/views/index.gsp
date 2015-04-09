@@ -47,7 +47,7 @@
 			}
 
 			#recherche {
-				width: 30em;
+				width: 35em;
 				margin: 2em auto;
 			}
 			#museeList {
@@ -79,6 +79,9 @@
 				list-style-position: inside;
 				margin: 0.25em 0;
 			}
+			#buttonLarge {
+				width: 100%;
+			}
 
 			@media screen and (max-width: 480px) {
 				#status {
@@ -106,7 +109,12 @@
 						</div>
 						<div class="fieldcontain">
 							<label for="codePostal">Code Postal</label>
-							<g:select name="codePostal" from="${[""]+toulousemusee.Adresse.list().codePostal}"/>
+							<select name="codePostal" id="codePostal">
+								<option></option>
+								<g:each in="${Adresse.list().codePostal.unique()}" status="i" var="option">
+									<option>${option}</option>
+								</g:each>
+							</select>
 						</div>
 						<div class="fieldcontain">
 							<label for="adresseMusee">Rue</label>
@@ -114,7 +122,9 @@
 						</div>
 					</fieldset>
 					<fieldset class="buttons">
-						<input type="submit" name="search" value="Rechercher" class="save">
+						<!--<input type="submit" name="search" value="Rechercher" class="save">
+						<form action="musee/doResearch" method="post">-->
+						<g:actionSubmit value="Rechercher" id="buttonLarge"/>
 					</fieldset>
 				</g:formRemote>
 			</div>
@@ -168,6 +178,7 @@
 
 							<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 
+
 							<td><g:form controller="musee">
 								${session["musees"]?.get(0)?.id}
 								${museeInstance.id}
@@ -196,7 +207,8 @@
 					</tbody>
 				</table>
 				<div class="pagination">
-					<g:paginate total="${museeInstanceCount ?: 0}" />
+					<g:paginate next="Suivant" prev="Précédent"
+								max="5" maxsteps="0" controller="musee" total="${museeInstanceCount ?: 0}" />
 				</div>
 			</div>
 			</g:if>
