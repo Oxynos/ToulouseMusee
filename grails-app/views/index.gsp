@@ -53,6 +53,11 @@
 			#museeList {
 				margin: 2em;
 			}
+			
+			#favMuseeList {
+				float: right;
+				margin: 2em;
+			}
 
 			h2 {
 				margin-top: 1em;
@@ -122,6 +127,14 @@
 				</table>
 
 			</div>
+			<div id="favMuseeList">
+				<table>
+						<tr><th>Vos musées favoris</th></tr>
+						<g:each var="m" in="${((List<Musee>)session["musees"])?.sort { it.nom }}">
+							<tr><td>${m.nom}</td></tr>
+						</g:each>
+				</table>
+			</div>
 			<div id="museeList">
 			<g:if test="${museeInstanceList != null}">
 					<h1>Résultats de la recherche</h1>
@@ -155,8 +168,6 @@
 
 							<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 
-							<g:set var="j" value="${session["musees"]?.contains(museeInstance)}"/>
-							${session?.musees?.contains(museeInstance)}
 							<td><g:form controller="musee">
 								${session["musees"]?.get(0)?.id}
 								${museeInstance.id}
@@ -189,7 +200,6 @@
 				</div>
 			</div>
 			</g:if>
-
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
 				<ul>

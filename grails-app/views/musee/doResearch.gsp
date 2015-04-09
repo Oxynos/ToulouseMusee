@@ -1,13 +1,7 @@
-
 <%@ page import="toulousemusee.Musee" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="layout" content="main">
+
     <g:set var="entityName" value="${message(code: 'musee.label', default: 'Musee')}" />
     <title><g:message code="default.list.label" args="[entityName]" /></title>
-</head>
-<body>
 <div id="list-musee" class="content scaffold-list" role="main">
     <h1><g:message code="default.list.label" args="[entityName]" /></h1>
     <g:if test="${flash.message}">
@@ -51,13 +45,16 @@
 
                 <td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 
+                <td><g:form controller="musee">
+                    <g:hiddenField name="id" value="${museeInstance.id}"/>
+                    <g:actionSubmit value="Ajouter aux favoris"
+                                    onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
+                                    disabled="${session["musees"]?.contains(Musee.findById(museeInstance?.id))}"/>
+                    ${j}
+                </g:form>
+                </td>
             </tr>
         </g:each>
         </tbody>
     </table>
-    <div class="pagination">
-        <g:paginate total="${museeInstanceCount ?: 0}" />
-    </div>
 </div>
-</body>
-</html>
