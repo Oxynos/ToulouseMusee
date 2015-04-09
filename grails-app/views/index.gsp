@@ -106,12 +106,23 @@
 						<td><g:form controller="musee">
 							${session["musees"]?.get(0)?.id}
 							${museeInstance.id}
-							${session["musees"]?.contains(museeInstance)}
-							<g:set var="j" value="${session["musees"]?.get(0)?.id == museeInstance.id}"/>
+							${session["musees"]?.get(0)?.nom}
+							${museeInstance.nom}
+							${session["musees"]?.get(0)?.telephone}
+							${museeInstance.telephone}
+							${session["musees"]?.get(0)?.horairesOuverture}
+							${museeInstance.horairesOuverture}
+							${session["musees"]?.get(0)?.accesBus}
+							${museeInstance?.accesBus}
+							${session["musees"]?.get(0)?.accesMetro}
+							${museeInstance?.accesMetro}
+							${Musee.findById(museeInstance.id).id}
+							${session?.musees?.contains(museeInstance)}
+							<g:set var="j" value="${Musee.findById(museeInstance.id) in session["musees"]}"/>
 							<g:hiddenField name="id" value="${museeInstance.id}"/>
 							<g:actionSubmit value="Ajouter aux favoris"
 											onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-											disabled="${j}"/>
+											disabled="${session["musees"]?.contains(Musee.findById(museeInstance.id))}"/>
 							${j}
 							</g:form>
 						</td>
@@ -125,7 +136,7 @@
 				<tr><td>Nom du Musée (ou une partie)</td>
 					<td><g:textField name="musee"/></td></tr>
 				<tr><td>Code Postal</td>
-					<td><g:select name="codePostal" from="${ toulousemusee.Adresse.list().codePostal}"  class="many-to-one"/></td></tr>
+					<td><g:select name="codePostal" from="${toulousemusee.Adresse.list().codePostal}"  class="many-to-one"/></td></tr>
 				<tr><td>Adresse du musée (ou une partie)</td>
 					<td><g:textField name="adresseMusee"/></td></tr>
 				<tr><td><g:submitButton name="rechercher" value="Rechercher"/></td></tr>
