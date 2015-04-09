@@ -7,7 +7,6 @@ class Musee {
     String telephone
     String accesMetro
     String accesBus
-    //String siteWeb
 
     Adresse adresse
 
@@ -22,9 +21,13 @@ class Musee {
         adresse nullable: true
     }
 
+    static mapping = {
+        adresse fetch: "join"
+        gestionnaire fetch: "join"
+    }
+
     @Override
     String toString() {
         return "$nom ($gestionnaire)\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
-        //return "$nom ($gestionnaire)\n$siteWeb\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
     }
 }
