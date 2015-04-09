@@ -36,7 +36,6 @@ class MuseeController {
             return
         }
 
-        //museeInstance.save flush: true
         museeService.insertOrUpdateMuseeForGestionnaire(museeInstance, museeInstance.gestionnaire)
 
         request.withFormat {
@@ -84,7 +83,6 @@ class MuseeController {
             return
         }
 
-        //museeInstance.delete flush: true
         museeService.deleteMusee(museeInstance)
 
         request.withFormat {
