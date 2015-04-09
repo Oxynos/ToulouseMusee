@@ -13,6 +13,11 @@ class AdresseControllerSpec extends Specification {
         assert params != null
         // TODO: Populate valid properties like...
         //params["name"] = 'someValidName'
+
+        params["numero"] = "8"
+        params["rue"] = "rue"
+        params["codePostal"] = "codeP"
+        params["ville"] = "ville"
     }
 
     void "Test the index action returns the correct model"() {

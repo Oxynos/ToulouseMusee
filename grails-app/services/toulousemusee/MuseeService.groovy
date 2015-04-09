@@ -13,9 +13,6 @@ class MuseeService {
      */
     Musee insertOrUpdateMuseeForGestionnaire(Musee unMusee, Gestionnaire unGestionnaire) {
         unGestionnaire.addToMusees(unMusee)
-        // note
-        // le flush: true n'est pas nécessaire pour que le test d'intégration passe mais est
-        // nécessaire pour que l'appel venant du contrôleur fonctionne comme attendu
         unGestionnaire.save(flush: true)
         unMusee
     }

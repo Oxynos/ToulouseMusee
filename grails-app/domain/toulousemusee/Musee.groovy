@@ -18,7 +18,6 @@ class Musee {
         telephone nullable: true
         accesBus nullable: true
         accesMetro nullable: true
-        adresse nullable: true
     }
 
     static mapping = {

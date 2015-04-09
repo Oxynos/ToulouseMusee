@@ -9,6 +9,7 @@ class MuseeServiceIntegrationTestIntegrationSpec extends Specification {
     Gestionnaire unGestionnaire
 
     MuseeService museeService
+    JeuTestService jeuTestService
 
     def setup() {
         uneAdresse = new Adresse(numero: "4 Bis", rue: "rue de la verge d'or", codePostal: "31000", ville: "Toulouse").save()
@@ -48,6 +49,29 @@ class MuseeServiceIntegrationTestIntegrationSpec extends Specification {
 
     void "test du moteur de recherche sur les musées"() {
 
+        given: "les musées, les gestionnaires, les adresses donnés par le jeu de test"
+        jeuTestService
 
+        when: "on cherche les musées dont le code postal est 31300"
+        List<Musee> res = museeService.searchMusee(null, "31300", null)
+
+        then:"on récupère 2 musées dont le code postal est 31300"
+        res.size() == 2
+        res.contains(Musee.findByTelephone("05 61 77 84 25"))
+        res.contains(Musee.findByTelephone("05 61 77 82 72"))
+
+        when: "on cherche les musées dont le nom contient JAC"
+        res = museeService.searchMusee("JAC",null,null)
+
+        then: "on récupère uniquement le musée ensemble conventuel des Jacobins"
+        res.size() == 1
+        res.contains(Musee.findByNom("ENSEMBLE CONVENTUEL DES JACOBINS"))
+
+        when: "on récupère les musées avec l'adresse contenant PANT"
+        res = museeService.searchMusee(null,null,"PANT")
+
+        then: "on récupère uniquement le centre méridional de l'architecture"
+        res.size() == 1
+        res.contains(Musee.findByNom("CMAV - CENTRE MERIDIONAL DE L'ARCHITECTURE DE LA VILLE"))
     }
 }
