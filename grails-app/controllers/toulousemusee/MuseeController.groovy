@@ -12,7 +12,7 @@ class MuseeController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = 5
         respond Musee.list(params), model: [museeInstanceCount: Musee.count()]
     }
 
@@ -105,9 +105,9 @@ class MuseeController {
     }
 
     def doResearch() {
+        println("doResearch")
         List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
-        render(view: '../index', model: [museeInstanceList: musees, museeInstanceCount: musees.size()])
-        //respond Inscription.list(params), model: [inscriptionInstanceCount: Inscription.count()]
+        //render(view: '../index', model: [museeInstanceList: musees, museeInstanceCount: musees.size()])
         respond musees
     }
 
@@ -121,6 +121,8 @@ class MuseeController {
         }
 
         println session["musees"].contains(Musee.findById(params.id))
-        redirect(uri: '/')
+        //render(view: '../index')
+        redirect(uri:  "/")
+
     }
 }

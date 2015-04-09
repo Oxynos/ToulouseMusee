@@ -93,7 +93,7 @@
 	<body>
 		<div id="page-body" role="main">
 			<div id="recherche">
-				<form action="musee/doResearch" method="post">
+				<g:formRemote name="form" url="[controller : 'musee', action : 'doResearch']" update="museeList">
 					<fieldset class="form">
 						<div class="fieldcontain">
 							<label for="musee">Nom du musée</label>
@@ -101,7 +101,7 @@
 						</div>
 						<div class="fieldcontain">
 							<label for="codePostal">Code Postal</label>
-							<g:select name="codePostal" from="${toulousemusee.Adresse.list().codePostal}"  class="many-to-one"/>
+							<g:select name="codePostal" from="${[""]+toulousemusee.Adresse.list().codePostal}"/>
 						</div>
 						<div class="fieldcontain">
 							<label for="adresseMusee">Rue</label>
@@ -111,7 +111,7 @@
 					<fieldset class="buttons">
 						<input type="submit" name="search" value="Rechercher" class="save">
 					</fieldset>
-				</form>
+				</g:formRemote>
 			</div>
 
 			<div id="list-musee" class="content scaffold-list" role="main">
@@ -122,9 +122,9 @@
 				</table>
 
 			</div>
-
 			<div id="museeList">
-					<h1>Musée List</h1>
+			<g:if test="${museeInstanceList != null}">
+					<h1>Résultats de la recherche</h1>
 					<table>
 						<thead>
 						<tr>
@@ -155,7 +155,8 @@
 
 							<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 
-
+							<g:set var="j" value="${session["musees"]?.contains(museeInstance)}"/>
+							${session?.musees?.contains(museeInstance)}
 							<td><g:form controller="musee">
 								${session["musees"]?.get(0)?.id}
 								${museeInstance.id}
@@ -170,8 +171,7 @@
 								${session["musees"]?.get(0)?.accesMetro}
 								${museeInstance?.accesMetro}
 								${Musee.findById(museeInstance.id).id}
-								${session?.musees?.contains(museeInstance)}
-								<g:set var="j" value="${Musee.findById(museeInstance.id) in session["musees"]}"/>
+
 								<g:hiddenField name="id" value="${museeInstance.id}"/>
 								<g:actionSubmit value="Ajouter aux favoris"
 												onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
@@ -188,6 +188,7 @@
 					<g:paginate total="${museeInstanceCount ?: 0}" />
 				</div>
 			</div>
+			</g:if>
 
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
