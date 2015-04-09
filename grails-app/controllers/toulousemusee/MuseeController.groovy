@@ -108,6 +108,8 @@ class MuseeController {
 
     def doResearch() {
         List<Musee> musees = museeService.searchMusee(params.musee, params.codePostal, params.adresseMusee)
+        render(view: '../index', model: [museeInstanceList: musees, museeInstanceCount: musees.size()])
+        //respond Inscription.list(params), model: [inscriptionInstanceCount: Inscription.count()]
         respond musees
     }
 

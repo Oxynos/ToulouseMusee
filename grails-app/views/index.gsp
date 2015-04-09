@@ -1,4 +1,5 @@
-<%@ page import="toulousemusee.Adresse; toulousemusee.Musee" %>
+<%@ page import="toulousemusee.Adresse" %>
+<%@ page import="toulousemusee.Musee" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -42,7 +43,15 @@
 			}
 
 			#page-body {
-				margin: 2em 1em 1.25em 18em;
+				margin: 0em;
+			}
+
+			#recherche {
+				width: 30em;
+				margin: 2em auto;
+			}
+			#museeList {
+				margin: 2em;
 			}
 
 			h2 {
@@ -83,65 +92,102 @@
 	</head>
 	<body>
 		<div id="page-body" role="main">
-			<table>
-				<tbody>
-				<g:each in="${toulousemusee.Musee.list().getAt(0..2)}" status="i" var="museeInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+			<div id="recherche">
+				<form action="musee/doResearch" method="post">
+					<fieldset class="form">
+						<div class="fieldcontain">
+							<label for="musee">Nom du musée</label>
+							<g:textField name="musee"/>
+						</div>
+						<div class="fieldcontain">
+							<label for="codePostal">Code Postal</label>
+							<g:select name="codePostal" from="${toulousemusee.Adresse.list().codePostal}"  class="many-to-one"/>
+						</div>
+						<div class="fieldcontain">
+							<label for="adresseMusee">Rue</label>
+							<g:textField name="adresseMusee"/>
+						</div>
+					</fieldset>
+					<fieldset class="buttons">
+						<input type="submit" name="search" value="Rechercher" class="save">
+					</fieldset>
+				</form>
+			</div>
 
-						<td>${fieldValue(bean: museeInstance, field: "nom")}</td>
+			<div id="list-musee" class="content scaffold-list" role="main">
 
-						<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
+					<tbody>
 
-						<td>${fieldValue(bean: museeInstance, field: "horairesOuverture")}</td>
+					</tbody>
+				</table>
 
-						<td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
+			</div>
 
-						<td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
+			<div id="museeList">
+					<h1>Musée List</h1>
+					<table>
+						<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Adresse</th>
+							<th>Horaires</th>
+							<th>Téléphone</th>
+							<th>Gestionnaire</th>
+							<th>Accès Bus</th>
+							<th>Accès Métro</th>
+						</tr>
+						</thead>
+					<tbody>
+					<g:each in="${museeInstanceList}" status="i" var="museeInstance">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-						<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
+							<td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nom")}</g:link></td>
 
-						<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
+							<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
+
+							<td>${fieldValue(bean: museeInstance, field: "horairesOuverture")}</td>
+
+							<td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
+
+							<td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
+
+							<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
+
+							<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
 
 
-						<td><g:form controller="musee">
-							${session["musees"]?.get(0)?.id}
-							${museeInstance.id}
-							${session["musees"]?.get(0)?.nom}
-							${museeInstance.nom}
-							${session["musees"]?.get(0)?.telephone}
-							${museeInstance.telephone}
-							${session["musees"]?.get(0)?.horairesOuverture}
-							${museeInstance.horairesOuverture}
-							${session["musees"]?.get(0)?.accesBus}
-							${museeInstance?.accesBus}
-							${session["musees"]?.get(0)?.accesMetro}
-							${museeInstance?.accesMetro}
-							${Musee.findById(museeInstance.id).id}
-							${session?.musees?.contains(museeInstance)}
-							<g:set var="j" value="${Musee.findById(museeInstance.id) in session["musees"]}"/>
-							<g:hiddenField name="id" value="${museeInstance.id}"/>
-							<g:actionSubmit value="Ajouter aux favoris"
-											onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-											disabled="${session["musees"]?.contains(Musee.findById(museeInstance.id))}"/>
-							${j}
+							<td><g:form controller="musee">
+								${session["musees"]?.get(0)?.id}
+								${museeInstance.id}
+								${session["musees"]?.get(0)?.nom}
+								${museeInstance.nom}
+								${session["musees"]?.get(0)?.telephone}
+								${museeInstance.telephone}
+								${session["musees"]?.get(0)?.horairesOuverture}
+								${museeInstance.horairesOuverture}
+								${session["musees"]?.get(0)?.accesBus}
+								${museeInstance?.accesBus}
+								${session["musees"]?.get(0)?.accesMetro}
+								${museeInstance?.accesMetro}
+								${Musee.findById(museeInstance.id).id}
+								${session?.musees?.contains(museeInstance)}
+								<g:set var="j" value="${Musee.findById(museeInstance.id) in session["musees"]}"/>
+								<g:hiddenField name="id" value="${museeInstance.id}"/>
+								<g:actionSubmit value="Ajouter aux favoris"
+												onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
+												disabled="${session["musees"]?.contains(Musee.findById(museeInstance.id))}"/>
+								${j}
 							</g:form>
-						</td>
+							</td>
 
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<g:form name="searchMusee" action="doResearch" method="post" controller="musee">
-			<table>
-				<tr><td>Nom du Musée (ou une partie)</td>
-					<td><g:textField name="musee"/></td></tr>
-				<tr><td>Code Postal</td>
-					<td><g:select name="codePostal" from="${toulousemusee.Adresse.list().codePostal}"  class="many-to-one"/></td></tr>
-				<tr><td>Adresse du musée (ou une partie)</td>
-					<td><g:textField name="adresseMusee"/></td></tr>
-				<tr><td><g:submitButton name="rechercher" value="Rechercher"/></td></tr>
-			</table>
-			</g:form>
+						</tr>
+					</g:each>
+					</tbody>
+				</table>
+				<div class="pagination">
+					<g:paginate total="${museeInstanceCount ?: 0}" />
+				</div>
+			</div>
 
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
