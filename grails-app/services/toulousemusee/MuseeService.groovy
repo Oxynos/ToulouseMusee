@@ -27,8 +27,7 @@ class MuseeService {
     }
 
     List<Musee> searchMusee(String name, String codeP, String adress) {
-        def m = Musee.createCriteria()
-        List<Musee> results = m.list {
+        def results = Musee.createCriteria().list() {
             if (name) {
                 if (codeP) {
                     adresse {
@@ -70,6 +69,9 @@ class MuseeService {
                     like("nom", "%$name%")
                 }
             }
+
+            //firstResult(o)
+            //maxResults(m)
         }
         results
     }
