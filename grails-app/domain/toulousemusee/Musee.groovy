@@ -25,8 +25,24 @@ class Musee {
         gestionnaire fetch: "join"
     }
 
+
+
     @Override
     String toString() {
         return "$nom ($gestionnaire)\n$adresse\n$horairesOuverture\nTéléphone : $telephone \nAccès métro : $accesMetro\nAccès bus : $accesBus"
+    }
+
+
+    @Override
+    boolean equals(Object o) {
+
+        boolean sameSame = false
+
+        if (o != null && o instanceof Musee)
+        {
+            sameSame = this.id == ((Musee) o).id
+        }
+
+        return sameSame;
     }
 }

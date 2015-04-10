@@ -1,6 +1,7 @@
 package toulousemusee
 
 import grails.transaction.Transactional
+import org.hibernate.FetchMode
 
 @Transactional
 class MuseeService {
@@ -28,6 +29,8 @@ class MuseeService {
 
     List<Musee> searchMusee(String name, String codeP, String adress) {
         def results = Musee.createCriteria().list() {
+            fetchMode("adresse",FetchMode.JOIN)
+            fetchMode("gestionnaire", FetchMode.JOIN)
             if (name) {
                 if (codeP) {
                     adresse {
@@ -65,9 +68,6 @@ class MuseeService {
                     like("nom", "%$name%")
                 }
             }
-
-            //firstResult(o)
-            //maxResults(m)
         }
         results
     }

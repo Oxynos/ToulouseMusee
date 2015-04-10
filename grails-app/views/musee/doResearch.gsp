@@ -30,7 +30,6 @@
         <tbody>
         <g:each in="${museeInstanceList}" status="i" var="museeInstance">
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
                 <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nom")}</g:link></td>
 
                 <td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
@@ -49,12 +48,15 @@
                     <g:hiddenField name="id" value="${museeInstance.id}"/>
                     <g:actionSubmit value="Ajouter aux favoris"
                                     onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-                                    disabled="${session["musees"]?.contains(Musee.findById(museeInstance?.id))}"/>
-                    ${j}
+                                    disabled="${session["musees"]?.contains(museeInstance)}"/>
                 </g:form>
                 </td>
             </tr>
         </g:each>
         </tbody>
     </table>
+    <div class="pagination">
+        <g:paginate next="Suivant" prev="Précédent"
+                    max="5" maxsteps="0" controller="musee" total="${museeInstanceCount ?: 0}" />
+    </div>
 </div>

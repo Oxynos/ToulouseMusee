@@ -109,12 +109,7 @@
 						</div>
 						<div class="fieldcontain">
 							<label for="codePostal">Code Postal</label>
-							<select name="codePostal" id="codePostal">
-								<option></option>
-								<g:each in="${Adresse.list().codePostal.unique()}" status="i" var="option">
-									<option>${option}</option>
-								</g:each>
-							</select>
+							<g:select name="codePostal" from="${[""]+Adresse.list().codePostal.unique()}"/>
 						</div>
 						<div class="fieldcontain">
 							<label for="adresseMusee">Rue</label>
@@ -122,8 +117,6 @@
 						</div>
 					</fieldset>
 					<fieldset class="buttons">
-						<!--<input type="submit" name="search" value="Rechercher" class="save">
-						<form action="musee/doResearch" method="post">-->
 						<g:actionSubmit value="Rechercher" id="buttonLarge"/>
 					</fieldset>
 				</g:formRemote>
@@ -139,9 +132,9 @@
 			</div>
 			<div id="favMuseeList">
 				<table>
-						<tr><th>Vos musées favoris</th></tr>
+						<tr><th>Vos musées favoris</th><th>Supprimer des favoris</th></tr>
 						<g:each var="m" in="${((List<Musee>)session["musees"])?.sort { it.nom }}">
-							<tr><td>${m.nom}</td></tr>
+							<tr><td>${m.nom}</td><td><g:actionSubmit value="-"/></td></tr>
 						</g:each>
 				</table>
 			</div>

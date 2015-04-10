@@ -119,6 +119,8 @@ class MuseeController {
             session["musees"].add(Musee.findById(params.id))
         }
 
+        println session["musees"]?.get(0).nom + Musee.findById(1)
+        println session["musees"].contains(Musee.findById(1))
         println session["musees"].contains(Musee.findById(params.id))
         redirect(uri: '/')
     }
