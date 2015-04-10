@@ -83,6 +83,10 @@
 				width: 100%;
 			}
 
+			#buttonMedium {
+				width: 50%;
+			}
+
 			@media screen and (max-width: 480px) {
 				#status {
 					display: none;
@@ -130,14 +134,20 @@
 				</table>
 
 			</div>
-			<div id="favMuseeList">
-				<table>
-						<tr><th>Vos musées favoris</th><th>Supprimer des favoris</th></tr>
-						<g:each var="m" in="${((List<Musee>)session["musees"])?.sort { it.nom }}">
-							<tr><td>${m.nom}</td><td><g:actionSubmit value="-"/></td></tr>
-						</g:each>
-				</table>
-			</div>
+			<g:if test="${session["musees"]}">
+				<div id="favMuseeList">
+					<table>
+							<tr><th>Vos musées favoris</th><th>Supprimer des favoris</th></tr>
+							<g:each var="m" in="${((List<Musee>)session["musees"])?.sort { it.nom }}">
+								<fieldset class="buttons">
+									<tr><td>${m.nom}</td>
+										<td>
+										<g:actionSubmit value="-" id="buttonLarge" onclick="return confirm(/Voulez vous supprimer ${m.nom} de vos musées préférés ?/)"/></td></tr>
+								</fieldset>
+							</g:each>
+					</table>
+				</div>
+			</g:if>
 			<div id="museeList">
 			<g:if test="${museeInstanceList != null}">
 					<h1>Résultats de la recherche</h1>
@@ -188,9 +198,11 @@
 								${Musee.findById(museeInstance.id).id}
 
 								<g:hiddenField name="id" value="${museeInstance.id}"/>
-								<g:actionSubmit value="Ajouter aux favoris"
-												onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-												disabled="${session["musees"]?.contains(Musee.findById(museeInstance.id))}"/>
+								<fieldset class="buttons">
+									<g:actionSubmit value="Ajouter aux favoris"
+													onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
+													disabled="${session["musees"]?.contains(museeInstance)}" id="buttonLarge"/>
+								</fieldset>
 								${j}
 							</g:form>
 							</td>

@@ -64,7 +64,7 @@ body {
 }
 
 a:link, a:visited, a:hover {
-	color: #48802c;
+	color: #0080FF;
 }
 
 a:hover, a:active {
@@ -72,7 +72,7 @@ a:hover, a:active {
 }
 
 h1 {
-	color: #48802c;
+	color: #0040FF;
 	font-weight: normal;
 	font-size: 1.25em;
 	margin: 0.8em 0 0.3em 0;
@@ -107,7 +107,7 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	background: #0040FF;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -471,11 +471,11 @@ th.desc a {
 }
 
 .even {
-	background: #ffffff;
+	background: #CEE3F6;
 }
 
 th:hover, tr:hover {
-	background: #E1F2B6;
+	background: #A9A9F5;
 }
 
 /* PAGINATION */
@@ -521,7 +521,7 @@ th:hover, tr:hover {
 /* ACTION BUTTONS */
 
 .buttons {
-	background-color: #efefef;
+	background-color: #0040FF;
 	overflow: hidden;
 	padding: 0.3em;
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
@@ -529,19 +529,22 @@ th:hover, tr:hover {
 	        box-shadow: 0 0 3px 1px #aaaaaa;
 	margin: 0.1em 0 0 0;
 	border: none;
+	color:  #FFFFFF;
+	border-radius: 10px;
 }
 
 .buttons input,
 .buttons a {
 	background-color: transparent;
 	border: 0;
-	color: #666666;
+	color: #FFFFFF;
 	cursor: pointer;
 	display: inline-block;
 	margin: 0 0.25em 0;
 	overflow: visible;
 	padding: 0.25em 0.7em;
 	text-decoration: none;
+	border-radius: 10px;
 
 	   -moz-border-radius: 0.3em;
 	-webkit-border-radius: 0.3em;
@@ -550,7 +553,7 @@ th:hover, tr:hover {
 
 .buttons input:hover, .buttons input:focus,
 .buttons a:hover, .buttons a:focus {
-	background-color: #999999;
+	background-color: #0040FF;
 	color: #ffffff;
 	outline: none;
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
