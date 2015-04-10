@@ -142,81 +142,19 @@
 								<fieldset class="buttons">
 									<tr><td>${m.nom}</td>
 										<td>
-										<g:actionSubmit value="-" id="buttonLarge" onclick="return confirm(/Voulez vous supprimer ${m.nom} de vos musées préférés ?/)"/></td></tr>
+											<g:form controller="musee">
+												<g:hiddenField name="idFavourite" value="${m.id}"/>
+												<g:actionSubmit value="-" id="buttonLarge" onclick="return confirm(/Voulez vous supprimer ${m.nom} de vos musées préférés ?/)"
+												action="removeMusee"/>
+											</g:form>
+									</td></tr>
 								</fieldset>
 							</g:each>
 					</table>
 				</div>
 			</g:if>
 			<div id="museeList">
-			<g:if test="${museeInstanceList != null}">
-					<h1>Résultats de la recherche</h1>
-					<table>
-						<thead>
-						<tr>
-							<th>Nom</th>
-							<th>Adresse</th>
-							<th>Horaires</th>
-							<th>Téléphone</th>
-							<th>Gestionnaire</th>
-							<th>Accès Bus</th>
-							<th>Accès Métro</th>
-						</tr>
-						</thead>
-					<tbody>
-					<g:each in="${museeInstanceList}" status="i" var="museeInstance">
-						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-
-							<td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nom")}</g:link></td>
-
-							<td>${fieldValue(bean: museeInstance, field: "adresse")}</td>
-
-							<td>${fieldValue(bean: museeInstance, field: "horairesOuverture")}</td>
-
-							<td>${fieldValue(bean: museeInstance, field: "telephone")}</td>
-
-							<td>${fieldValue(bean: museeInstance, field: "gestionnaire")}</td>
-
-							<td>${fieldValue(bean: museeInstance, field: "accesBus")}</td>
-
-							<td>${fieldValue(bean: museeInstance, field: "accesMetro")}</td>
-
-
-							<td><g:form controller="musee">
-								${session["musees"]?.get(0)?.id}
-								${museeInstance.id}
-								${session["musees"]?.get(0)?.nom}
-								${museeInstance.nom}
-								${session["musees"]?.get(0)?.telephone}
-								${museeInstance.telephone}
-								${session["musees"]?.get(0)?.horairesOuverture}
-								${museeInstance.horairesOuverture}
-								${session["musees"]?.get(0)?.accesBus}
-								${museeInstance?.accesBus}
-								${session["musees"]?.get(0)?.accesMetro}
-								${museeInstance?.accesMetro}
-								${Musee.findById(museeInstance.id).id}
-
-								<g:hiddenField name="id" value="${museeInstance.id}"/>
-								<fieldset class="buttons">
-									<g:actionSubmit value="Ajouter aux favoris"
-													onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-													disabled="${session["musees"]?.contains(museeInstance)}" id="buttonLarge"/>
-								</fieldset>
-								${j}
-							</g:form>
-							</td>
-
-						</tr>
-					</g:each>
-					</tbody>
-				</table>
-				<div class="pagination">
-					<g:paginate next="Suivant" prev="Précédent"
-								max="5" maxsteps="0" controller="musee" total="${museeInstanceCount ?: 0}" />
-				</div>
 			</div>
-			</g:if>
 			<div id="controller-list" role="navigation">
 				<h2>Available Controllers:</h2>
 				<ul>

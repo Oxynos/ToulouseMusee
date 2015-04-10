@@ -118,10 +118,13 @@ class MuseeController {
             session["musees"] = new ArrayList<Musee>()
             session["musees"].add(Musee.findById(params.id))
         }
+        redirect(uri: '/')
+    }
 
-        println session["musees"]?.get(0).nom + Musee.findById(1)
-        println session["musees"].contains(Musee.findById(1))
-        println session["musees"].contains(Musee.findById(params.id))
+    def removeMusee() {
+        List<Musee> musees = session["musees"]
+
+        musees.remove(Musee.findById(params.idFavourite))
         redirect(uri: '/')
     }
 }
