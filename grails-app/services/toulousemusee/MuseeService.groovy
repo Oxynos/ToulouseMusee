@@ -52,20 +52,9 @@ class MuseeService {
                         like("rue", "%$adress%")
                     }
                 }
-                if (name) {
-                    like("nom", "%$name%")
-                }
             } else if (adress) {
                 adresse {
                     like("rue", "%$adress%")
-                }
-                if (codeP) {
-                    adresse {
-                        like("codePostal", codeP)
-                    }
-                }
-                if (name) {
-                    like("nom", "%$name%")
                 }
             }
         }

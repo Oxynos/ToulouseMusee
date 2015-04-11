@@ -12,10 +12,11 @@ class DemandeVisite {
             musees: Musee
     ]
 
+    static belongsTo = Musee
+
     static constraints = {
         code blank: false
         statut blank: false
-        musees nullable: true
         debutPeriode min: new Date(), nullable: false, validator: {value, reference ->
             if (reference.finPeriode == null)
                 return false

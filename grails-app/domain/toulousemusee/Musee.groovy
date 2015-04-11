@@ -18,11 +18,17 @@ class Musee {
         telephone nullable: true
         accesBus nullable: true
         accesMetro nullable: true
+        demandeVisites nullable: true
     }
+
+    static hasMany = [
+            demandeVisites: DemandeVisite
+    ]
 
     static mapping = {
         adresse fetch: "join"
         gestionnaire fetch: "join"
+        demandeVisites fetch: "join"
     }
 
 
