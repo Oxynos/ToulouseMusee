@@ -13,7 +13,7 @@ class DemandeVisiteService {
 
     DemandeVisite insertOrUpdateDemandeVisiteForMusees(DemandeVisite demandeVisite, List<Musee> musees) {
         musees.each {it.addToDemandeVisites(demandeVisite)
-                    it.save()}
+                    it.save(flush: true)}
         demandeVisite
     }
 

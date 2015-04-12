@@ -74,4 +74,26 @@ class MuseeServiceIntegrationTestIntegrationSpec extends Specification {
         res.size() == 1
         res.contains(Musee.findByNom("CMAV - CENTRE MERIDIONAL DE L'ARCHITECTURE DE LA VILLE"))
     }
+
+    void "test suppression d'un musée"() {
+
+        given: "un musée existant en base"
+        Musee unMusee = new Musee(nom: "Musée de l'informatique",
+                horairesOuverture: "OUVERT",
+                adresse: uneAdresse,
+                telephone: "05 05 05 05 50",
+                accesBus: "Par là",
+                accesMetro: "Par ici")
+        museeService.insertOrUpdateMuseeForGestionnaire(unMusee,unGestionnaire)
+
+        when: "on déclenche la suppression du musée"
+        museeService.deleteMusee(unMusee)
+
+        then: "le musée est supprimé en base"
+        Musee.findById(unMusee.id) == null
+
+        and: "le gestionnaire et l'adresse ne sont pas supprimés"
+        Adresse.findById(uneAdresse.id) != null
+        Gestionnaire.findById(unGestionnaire.id) != null
+    }
 }

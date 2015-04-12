@@ -28,6 +28,7 @@ class DemandeVisite {
             else
                 return value.after(reference.debutPeriode)}
         nbPersonnes max: 6, min: 1
+        musees nullable: true
     }
 
     static mapping = {
