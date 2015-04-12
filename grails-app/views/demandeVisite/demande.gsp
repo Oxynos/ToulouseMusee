@@ -27,18 +27,7 @@
     </g:hasErrors>
     <g:form url="[resource:demandeVisiteInstance, action:'soumettreDemande']" >
         <fieldset class="form">
-            <div class="fieldcontain">
-                <label for="debutPeriode">Début de la période</label>
-                <g:datePicker name="finPeriode" precision="day"/>
-            </div>
-            <div class="fieldcontain">
-                <label for="finPeriode">Fin de la période</label>
-                <g:datePicker name="debutPeriode" precision="day"/>
-            </div>
-            <div class="fieldcontain">
-                <label for="nbPersonnes">Nombre de personnes</label>
-                <input name="nbPersonnes" min="1" max="6" value="0" required="" id="nbPersonnes" type="number">
-            </div>
+            <g:render template="form"/>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -120,6 +120,7 @@ class DemandeVisiteController {
             return
         }
 
+        println demandeVisiteInstance.debutPeriode.toString()
         String charset = (('A'..'Z') + ('0'..'9')).join()
         demandeVisiteInstance.statut = "En cours"
         demandeVisiteInstance.code = RandomStringUtils.random(8, charset)
