@@ -84,7 +84,8 @@
 			}
 
 			#buttonMedium {
-				width: 50%;
+				width: 60%;
+				align-content: center;
 			}
 
 			@media screen and (max-width: 480px) {
@@ -139,18 +140,23 @@
 					<table>
 							<tr><th>Vos musées favoris</th><th>Supprimer des favoris</th></tr>
 							<g:each var="m" in="${((List<Musee>)session["musees"])?.sort { it.nom }}">
-								<fieldset class="buttons">
 									<tr><td>${m.nom}</td>
 										<td>
 											<g:form controller="musee">
 												<g:hiddenField name="idFavourite" value="${m.id}"/>
-												<g:actionSubmit value="-" id="buttonLarge" onclick="return confirm(/Voulez vous supprimer ${m.nom} de vos musées préférés ?/)"
-												action="removeMusee"/>
+												<fieldset class="buttons">
+													<g:actionSubmit value=" - " id="buttonLarge" onclick="return confirm(/Voulez vous supprimer ${m.nom} de vos musées préférés ?/)"
+													action="removeMusee"/>
+												</fieldset>
 											</g:form>
 									</td></tr>
-								</fieldset>
 							</g:each>
 					</table>
+					<g:form controller="demandeVisite">
+						<fieldset class="buttons">
+							<g:actionSubmit value="Effectuer une demande de visite" id = "buttonMedium" action="demande"/>
+						</fieldset>
+					</g:form>
 				</div>
 			</g:if>
 			<div id="museeList">

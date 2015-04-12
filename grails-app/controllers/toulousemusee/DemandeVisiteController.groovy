@@ -105,4 +105,8 @@ class DemandeVisiteController {
             '*' { render status: NOT_FOUND }
         }
     }
+
+    def demande() {
+        respond new DemandeVisite(params)
+    }
 }

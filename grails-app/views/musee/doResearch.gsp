@@ -25,6 +25,8 @@
 
             <g:sortableColumn property="accesMetro" title="${message(code: 'musee.accesMetro.label', default: 'Acces Metro')}" />
 
+            <g:sortableColumn property="ajoutFavoris" title="${message(code: 'ajoutFavoris.label', default: 'Ajouter aux favoris')}" />
+
         </tr>
         </thead>
         <tbody>
@@ -46,9 +48,11 @@
 
                 <td><g:form controller="musee">
                     <g:hiddenField name="id" value="${museeInstance.id}"/>
-                    <g:actionSubmit value="Ajouter aux favoris"
-                                    onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-                                    disabled="${session["musees"]?.contains(museeInstance)}"/>
+                    <fieldset class="buttons">
+                        <g:actionSubmit value=" + "
+                                        onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
+                                        disabled="${session["musees"]?.contains(museeInstance)}" id="buttonMedium"/>
+                    </fieldset>
                 </g:form>
                 </td>
             </tr>
