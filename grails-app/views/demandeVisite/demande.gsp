@@ -4,11 +4,11 @@
 <head>
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'demandeVisite.label', default: 'DemandeVisite')}" />
-    <title><g:message code="default.create.label" args="[entityName]" /></title>
+    <title>Nouvelle demande de visite</title>
 </head>
 <body>
 <table>
-    <tr><th>Vos musées favoris</th></tr>
+    <tr><th>Musées demandés</th></tr>
     <g:each var="m" in="${session["musees"]?.sort { it.nom }}">
         <tr><td><g:link controller="musee" action="show" id="${m.id}">${fieldValue(bean: m, field: "nom")}</g:link></td></tr>
     </g:each>
@@ -25,9 +25,20 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form url="[resource:demandeVisiteInstance, action:'save']" >
+    <g:form url="[resource:demandeVisiteInstance, action:'soumettreDemande']" >
         <fieldset class="form">
-            <g:render template="form"/>
+            <div class="fieldcontain">
+                <label for="debutPeriode">Début de la période</label>
+                <g:datePicker name="finPeriode" precision="day"/>
+            </div>
+            <div class="fieldcontain">
+                <label for="finPeriode">Fin de la période</label>
+                <g:datePicker name="debutPeriode" precision="day"/>
+            </div>
+            <div class="fieldcontain">
+                <label for="nbPersonnes">Nombre de personnes</label>
+                <input name="nbPersonnes" min="1" max="6" value="0" required="" id="nbPersonnes" type="number">
+            </div>
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -1,5 +1,6 @@
 package toulousemusee
 
+import org.apache.commons.lang.RandomStringUtils
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -30,6 +31,8 @@ class DemandeVisiteController {
             notFound()
             return
         }
+
+        demandeVisiteInstance.statut
 
         if (demandeVisiteInstance.hasErrors()) {
             respond demandeVisiteInstance.errors, view: 'create'
@@ -108,5 +111,33 @@ class DemandeVisiteController {
 
     def demande() {
         respond new DemandeVisite(params)
+    }
+
+    @Transactional
+    def soumettreDemande(DemandeVisite demandeVisiteInstance) {
+        if (demandeVisiteInstance == null) {
+            notFound()
+            return
+        }
+
+        String charset = (('A'..'Z') + ('0'..'9')).join()
+        demandeVisiteInstance.statut = "En cours"
+        demandeVisiteInstance.code = RandomStringUtils.random(8, charset)
+
+        if (demandeVisiteInstance.hasErrors()) {
+            respond demandeVisiteInstance.errors, view: 'demande'
+            return
+        }
+
+        //demandeVisiteInstance.save flush: true
+        demandeVisiteService.insertOrUpdateDemandeVisiteForMusees(demandeVisiteInstance, session["musees"])
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'demandeVisite.label', default: 'DemandeVisite'), demandeVisiteInstance.id])
+                redirect demandeVisiteInstance
+            }
+            '*' { respond demandeVisiteInstance, [status: CREATED] }
+        }
     }
 }
