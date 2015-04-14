@@ -25,7 +25,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form url="[resource:demandeVisiteInstance, action:'soumettreDemande']" >
+    <g:form url="[resource:demandeVisiteInstance, action:'soumettreDemande']">
         <fieldset class="form">
             <g:render template="form"/>
         </fieldset>

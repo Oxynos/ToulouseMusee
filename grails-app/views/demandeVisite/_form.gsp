@@ -13,7 +13,6 @@
 <div class="fieldcontain ${hasErrors(bean: demandeVisiteInstance, field: 'debutPeriode', 'error')} required">
 	<label for="debutPeriode">
 		<g:message code="demandeVisite.debutPeriode.label" default="Debut Periode" />
-		<span class="required-indicator">*</span>
 	</label>
 	<g:datePicker name="debutPeriode" precision="day"  value="${demandeVisiteInstance?.debutPeriode}"  />
 </div>

@@ -6,8 +6,9 @@ import grails.transaction.Transactional
 class DemandeVisiteService {
 
     DemandeVisite insertOrUpdateDemandeVisiteForMusee(DemandeVisite demandeVisite, Musee musee) {
-        musee.addToDemandeVisites(demandeVisite)
-        musee.save(flush: true)
+        demandeVisite.addToMusees(musee)
+        demandeVisite.save(flush: true)
+
         demandeVisite
     }
 
