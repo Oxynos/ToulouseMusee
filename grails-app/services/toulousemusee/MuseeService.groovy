@@ -18,12 +18,19 @@ class MuseeService {
         unMusee
     }
 
+    Musee insertOrUpdateMuseeForDemandeVisite(Musee unMusee, DemandeVisite uneDemande) {
+        uneDemande.addToMusees(unMusee)
+        uneDemande.save()
+        unMusee
+    }
+
     /**
      * Supprime un musée
      * @param unMusee le musée à supprimer
      */
     void deleteMusee(Musee unMusee) {
         unMusee.gestionnaire.removeFromMusees(unMusee)
+        //unMusee.demandeVisites.removeFromMusees(unMusee)
         unMusee.delete()
     }
 

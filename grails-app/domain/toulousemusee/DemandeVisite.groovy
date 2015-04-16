@@ -8,9 +8,7 @@ class DemandeVisite {
     int nbPersonnes
     String statut
 
-    static hasMany = [
-            musees: Musee
-    ]
+    static hasMany = [musees:Musee]
 
     static belongsTo = Musee
 

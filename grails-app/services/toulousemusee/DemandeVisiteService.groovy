@@ -13,13 +13,14 @@ class DemandeVisiteService {
     }
 
     DemandeVisite insertOrUpdateDemandeVisiteForMusees(DemandeVisite demandeVisite, List<Musee> musees) {
-        musees.each {it.addToDemandeVisites(demandeVisite)
-                    it.save(flush: true)}
+        musees.each {
+            demandeVisite.addToMusees(it)
+        }
+        demandeVisite.save()
         demandeVisite
     }
 
     void deleteDemandeVisite(DemandeVisite demandeVisite) {
-
         demandeVisite.musees.each {it.removeFromDemandeVisites(demandeVisite)}
         demandeVisite.delete()
     }
