@@ -3,11 +3,11 @@
 
 
 <div class="fieldcontain ${hasErrors(bean: demandeVisiteInstance, field: 'code', 'error')} required">
-	<g:hiddenField name="code" required="" value="NULL"/>
+	<g:hiddenField name="code" required="" value="DEFAULT"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: demandeVisiteInstance, field: 'statut', 'error')} required">
-	<g:hiddenField name="statut" value="NULL"/>
+	<g:hiddenField name="statut" value="DEFAULT"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: demandeVisiteInstance, field: 'debutPeriode', 'error')} required">

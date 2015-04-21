@@ -79,7 +79,5 @@ class JeuTestService {
                     accesBus: tokens[6],
                     adresse: ad)*/
         }
-        DemandeVisite demandeVisite = new DemandeVisite(code: "code" , debutPeriode: new Date(2016,10,10), finPeriode: new Date(2016,11,10), nbPersonnes: 6, musees: [Musee.findById(1), Musee.findById(2)],statut: "statut")
-        demandeVisiteService.insertOrUpdateDemandeVisiteForMusees(demandeVisite, demandeVisite.musees.asList())
     }
 }

@@ -8,11 +8,12 @@
     <title>Demande acceptée</title>
 </head>
 <body>
-<div class="message" role="contentinfo">
+<div class="spinner">
     <ul>
         Votre demande ${demandeVisiteInstance?.code} est désormais en cours de traitement.
     </ul>
-
+</div>
+<div class="button" role="button">
     <ul>
         <li><a class="home" href="${createLink(uri: '/')}">Retour à l'accueil</a></li>
     </ul>

@@ -114,15 +114,16 @@ class DemandeVisiteController {
     }
 
     @Transactional
-    def soumettreDemande(DemandeVisite demandeVisite) {
+    def soumettreDemande(DemandeVisite demandeVisiteInstance) {
 
         println params.code
         String charset = (('A'..'Z') + ('0'..'9')).join()
         String statut = "En cours"
         String code = RandomStringUtils.random(8, charset)
-        DemandeVisite demandeVisiteInstance = new DemandeVisite(code: code, statut: statut, debutPeriode: params.debutPeriode,
+        demandeVisiteInstance = new DemandeVisite(code: code, statut: statut, debutPeriode: params.debutPeriode,
                 finPeriode: params.finPeriode, nbPersonnes: params.nbPersonnes)
 
+        println "Validate" + demandeVisiteInstance.validate()
         if (demandeVisiteInstance == null) {
             notFound()
             return
@@ -134,19 +135,19 @@ class DemandeVisiteController {
         }
 
         demandeVisiteService.insertOrUpdateDemandeVisiteForMusees(demandeVisiteInstance, session["musees"])
-        //demandeVisiteService.insertOrUpdateDemandeVisiteForMusee(demandeVisite, session["musees"].get(0))
 
-
-        //println("FAVORIS")
-        //Musee.all.each {println it.nom}
-        respond(demandeVisiteInstance)
+        //respond(demandeVisiteInstance)
 
         /*request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'demandeVisite.label', default: 'DemandeVisite'), demandeVisiteInstance.id])
-                redirect demandeVisiteInstance
+                redirect(action: "demande")
             }
-            '*' { respond demandeVisiteInstance, [status: CREATED] }
+            '*' { respond demandeVisiteInstance  }
         }*/
+
+        respond demandeVisiteInstance
+        //demandeVisiteInstance.validate() ?: redirect(action: "demande")
+
     }
 }

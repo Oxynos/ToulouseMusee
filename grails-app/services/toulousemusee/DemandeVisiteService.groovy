@@ -6,17 +6,19 @@ import grails.transaction.Transactional
 class DemandeVisiteService {
 
     DemandeVisite insertOrUpdateDemandeVisiteForMusee(DemandeVisite demandeVisite, Musee musee) {
-        demandeVisite.addToMusees(musee)
-        demandeVisite.save(flush: true)
+        musee.addToDemandeVisites(demandeVisite)
+        musee.save(flush: true)
 
         demandeVisite
     }
 
     DemandeVisite insertOrUpdateDemandeVisiteForMusees(DemandeVisite demandeVisite, List<Musee> musees) {
-        musees.each {
-            demandeVisite.addToMusees(it)
-        }
-        demandeVisite.save()
+        println "MUSEES!"
+        println(musees?.get(0))
+        println "size " + Integer.toString(musees.size())
+        println demandeVisite.code
+        musees.each {it.addToDemandeVisites(demandeVisite)
+            it.save(flush: true)}
         demandeVisite
     }
 
