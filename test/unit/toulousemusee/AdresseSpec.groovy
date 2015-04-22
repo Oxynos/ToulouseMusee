@@ -35,4 +35,17 @@ class AdresseSpec extends Specification {
         unNumero|uneRue|unCode|uneVille
         "un numero" | "une rue" | "un code postal" | null
     }
+
+    void"la chaîne de caractères du toString"(String unNumero, String uneRue, String unCode, String uneVille) {
+        given: "une adresse avec un numero, une rue, un code postal et une ville correctement initialisé"
+        Adresse adresse = new Adresse(numero: unNumero, rue: uneRue, codePostal: unCode, ville: uneVille)
+
+        expect: "la chaîne de caractères est bien celle demandée"
+        adresse.toString().contains("$unNumero $uneRue, $unCode $uneVille")
+
+        where:
+        unNumero|uneRue|unCode|uneVille
+        "un numero" | "une rue" | "un code postal" | "une ville"
+
+    }
 }

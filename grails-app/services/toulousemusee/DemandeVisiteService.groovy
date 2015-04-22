@@ -1,6 +1,7 @@
 package toulousemusee
 
 import grails.transaction.Transactional
+import org.apache.commons.lang.RandomStringUtils
 
 @Transactional
 class DemandeVisiteService {
@@ -13,10 +14,6 @@ class DemandeVisiteService {
     }
 
     DemandeVisite insertOrUpdateDemandeVisiteForMusees(DemandeVisite demandeVisite, List<Musee> musees) {
-        println "MUSEES!"
-        println(musees?.get(0))
-        println "size " + Integer.toString(musees.size())
-        println demandeVisite.code
         musees.each {it.addToDemandeVisites(demandeVisite)
             it.save(flush: true)}
         demandeVisite
@@ -25,5 +22,11 @@ class DemandeVisiteService {
     void deleteDemandeVisite(DemandeVisite demandeVisite) {
         demandeVisite.musees.each {it.removeFromDemandeVisites(demandeVisite)}
         demandeVisite.delete()
+    }
+
+    def createCodeForDemandeVisite(DemandeVisite demandeVisite) {
+        String charset = (('A'..'Z') + ('0'..'9')).join()
+        String code = RandomStringUtils.random(8, charset)
+        demandeVisite.code = code
     }
 }

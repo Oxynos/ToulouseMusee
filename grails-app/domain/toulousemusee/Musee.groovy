@@ -42,13 +42,13 @@ class Musee {
     @Override
     boolean equals(Object o) {
 
-        boolean sameSame = false
+        boolean same = false
 
         if (o != null && o instanceof Musee)
         {
-            sameSame = this.id == ((Musee) o).id
+            same = this.id == ((Musee) o).id
         }
 
-        return sameSame;
+        return same;
     }
 }

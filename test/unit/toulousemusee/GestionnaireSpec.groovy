@@ -23,7 +23,7 @@ class GestionnaireSpec extends Specification {
     }
 
     void "l'invalidité d'un gestionnaire invalide"(String unNom, def _) {
-        given: "un nom correctement initialisé"
+        given: "un nom non correctement initialisé"
         Gestionnaire gestionnaire = new Gestionnaire(nom: unNom)
 
         expect: "le gestionnaire est invalide"
@@ -32,5 +32,17 @@ class GestionnaireSpec extends Specification {
         where:
         unNom | _
         null | _
+    }
+
+    void"la chaîne de caractère renvoyée est celle correspondante"(String unNom, def _) {
+        given: "un nom correctement initialisé"
+        Gestionnaire gestionnaire = new Gestionnaire(nom: unNom)
+
+        expect: "la chaîne correspond"
+        gestionnaire.toString() == unNom
+
+        where:
+        unNom| _
+        "un nom"| _
     }
 }

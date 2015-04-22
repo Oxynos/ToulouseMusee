@@ -45,4 +45,22 @@ class MuseeSpec extends Specification {
         "un nom"|"horaires"|"un telephone"|"acces metro"|"acces bus"|null|Mock(Gestionnaire)
         "un nom"|"horaires"|"un telephone"|"acces metro"|"acces bus"|Mock(Adresse)|null
     }
+
+    void "deux musées sont égaux"(String unNom, String desHoraires, String unTelephone,
+                                  String unAccesM, String unAccesB, Adresse uneAdresse, Gestionnaire unGestionnaire) {
+        given: "un nom, des horaires, un telephone, un acces metro et bus, une adresse et un gestionnaire initialisés correctement"
+        Musee musee = new Musee(nom: unNom, horairesOuverture: desHoraires, telephone: unTelephone,
+                accesMetro: unAccesM, accesBus: unAccesB, adresse: uneAdresse, gestionnaire: unGestionnaire)
+
+        and: "une copie du musée"
+        Musee musee1 = new Musee(id: musee.id, nom: unNom, horairesOuverture: desHoraires, telephone: unTelephone,
+                accesMetro: unAccesM, accesBus: unAccesB, adresse: uneAdresse, gestionnaire: unGestionnaire)
+
+        expect: "les deux musées sont égaux"
+        musee == musee1
+
+        where:
+        unNom|desHoraires|unTelephone|unAccesM|unAccesB|uneAdresse|unGestionnaire
+        "un nom"|"horaires"|"un telephone"|"acces metro"|"acces bus"|Mock(Adresse)|Mock(Gestionnaire)
+    }
 }

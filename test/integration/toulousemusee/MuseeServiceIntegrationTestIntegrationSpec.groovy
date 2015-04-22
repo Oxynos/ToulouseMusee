@@ -67,12 +67,40 @@ class MuseeServiceIntegrationTestIntegrationSpec extends Specification {
         res.size() == 1
         res.contains(Musee.findByNom("ENSEMBLE CONVENTUEL DES JACOBINS"))
 
+        when: "on cherche les musées dont le nom contient JAC avec le code postal 31000"
+        res = museeService.searchMusee("JAC","31000",null)
+
+        then: "on récupère uniquement le musée ensemble conventuel des Jacobins"
+        res.size() == 1
+        res.contains(Musee.findByNom("ENSEMBLE CONVENTUEL DES JACOBINS"))
+
+        when: "on cherche les musées dont le nom contient JAC avec le code postal 31000 et rue PAR"
+        res = museeService.searchMusee("JAC","31000","PAR")
+
+        then: "on récupère uniquement le musée ensemble conventuel des Jacobins"
+        res.size() == 1
+        res.contains(Musee.findByNom("ENSEMBLE CONVENTUEL DES JACOBINS"))
+
         when: "on récupère les musées avec l'adresse contenant PANT"
         res = museeService.searchMusee(null,null,"PANT")
 
         then: "on récupère uniquement le centre méridional de l'architecture"
         res.size() == 1
         res.contains(Musee.findByNom("CMAV - CENTRE MERIDIONAL DE L'ARCHITECTURE DE LA VILLE"))
+
+        when: "on récupère les musées avec le code postal 31400"
+        res = museeService.searchMusee(null,"31400",null)
+
+        then:
+        res.size() == 1
+        res.contains(Musee.findByNom("MUSEE GEORGES-LABIT"))
+
+        when: "on récupère les musées avec le code postal 31400 et au nom de rue contenant JAP"
+        res = museeService.searchMusee(null,"31400","JAP")
+
+        then:
+        res.size() == 1
+        res.contains(Musee.findByNom("MUSEE GEORGES-LABIT"))
     }
 
     void "test suppression d'un musée"() {

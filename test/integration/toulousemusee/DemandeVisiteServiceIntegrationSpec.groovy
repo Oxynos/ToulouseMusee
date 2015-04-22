@@ -113,4 +113,22 @@ class DemandeVisiteServiceIntegrationSpec extends IntegrationSpec {
         Musee.findById(unMusee.id) != null
     }
 
+    void "test création d'un code pour une demande"() {
+        given: "une demande de visite"
+        DemandeVisite demandeVisite = new DemandeVisite(code: "un code",
+                debutPeriode: new Date(2016, 10, 10),
+                finPeriode: new Date(2016, 11, 11),
+                nbPersonnes: 4,
+                statut: "un statut")
+
+        when: "on change le code de la demande"
+        demandeVisiteService.createCodeForDemandeVisite(demandeVisite)
+
+        then: "le code est composé de 8 caractères majuscules et numériques"
+        demandeVisite.code.matches("[A-Z0-9]{8}")
+
+
+
+    }
+
 }
