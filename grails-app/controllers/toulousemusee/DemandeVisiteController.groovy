@@ -117,9 +117,8 @@ class DemandeVisiteController {
     def soumettreDemande(DemandeVisite demandeVisiteInstance) {
 
 
-        demandeVisiteInstance = new DemandeVisite(statut: "en cours", debutPeriode: params.debutPeriode,
-                finPeriode: params.finPeriode, nbPersonnes: params.nbPersonnes)
         demandeVisiteService.createCodeForDemandeVisite(demandeVisiteInstance)
+        demandeVisiteInstance.statut = "en cours"
 
         if (demandeVisiteInstance == null) {
             notFound()
