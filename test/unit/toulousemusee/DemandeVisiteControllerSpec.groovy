@@ -7,7 +7,7 @@ import spock.lang.*
 @TestFor(DemandeVisiteController)
 @Mock(DemandeVisite)
 class DemandeVisiteControllerSpec extends Specification {
-
+DemandeVisiteService demandeVisiteService;
 
 
     def populateValidParams(params) {
@@ -157,5 +157,31 @@ class DemandeVisiteControllerSpec extends Specification {
         DemandeVisite.count() == 0
         response.redirectedUrl == '/demandeVisite/index'
         flash.message != null
+    }
+
+    void "Test that soumettreDemande correctly persists an instance "() {
+
+        when: "The soumettreDemande action is executed with an invalid instance"
+        request.contentType = FORM_CONTENT_TYPE
+        request.method = 'POST'
+        def demandeVisite = new DemandeVisite()
+        demandeVisite.validate()
+        controller.soumettreDemande(demandeVisite)
+
+        then: "The create view is rendered again with the correct model"
+        model.demandeVisiteInstance != null
+        view == 'demande'
+
+        when: "The save action is executed with a valid instance"
+        response.reset()
+        populateValidParams(params)
+        demandeVisite = new DemandeVisite(params)
+
+        controller.soumettreDemande(demandeVisite)
+
+        then: "A redirect is issued to the soumettreDemande action"
+        response.redirectedUrl == '/demandeVisite/soumettreDemande'
+        controller.flash.message != null
+        DemandeVisite.count() == 1
     }
 }

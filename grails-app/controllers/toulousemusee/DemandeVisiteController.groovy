@@ -136,18 +136,7 @@ class DemandeVisiteController {
 
         demandeVisiteService.insertOrUpdateDemandeVisiteForMusees(demandeVisiteInstance, session["musees"])
 
-        //respond(demandeVisiteInstance)
-
-        /*request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'demandeVisite.label', default: 'DemandeVisite'), demandeVisiteInstance.id])
-                redirect(action: "demande")
-            }
-            '*' { respond demandeVisiteInstance  }
-        }*/
-
         respond demandeVisiteInstance
-        //demandeVisiteInstance.validate() ?: redirect(action: "demande")
 
     }
 }
