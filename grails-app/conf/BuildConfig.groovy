@@ -66,6 +66,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         compile ":asset-pipeline:1.9.9"
         compile ":csv:0.3.1"
+        compile ":remote-pagination:0.4.8"
 
         // plugins needed at runtime but not for
         //runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"

@@ -8,7 +8,7 @@
     <title>Demande acceptée</title>
 </head>
 <body>
-<div class="spinner">
+<div class="container" role="contentinfo">
     <ul>
         Votre demande ${demandeVisiteInstance?.code} est désormais en cours de traitement.
     </ul>

@@ -60,7 +60,6 @@
         </tbody>
     </table>
     <div class="pagination">
-        <g:paginate next="Suivant" prev="Précédent"
-                    max="5" maxsteps="0" controller="musee" total="${museeInstanceCount ?: 0}" />
+        <util:remotePaginate update="museeList" action="doResearch" total="${museeInstanceCount?:0}" max="5" />
     </div>
 </div>

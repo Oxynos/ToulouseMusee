@@ -116,14 +116,11 @@ class DemandeVisiteController {
     @Transactional
     def soumettreDemande(DemandeVisite demandeVisiteInstance) {
 
-        println params.code
-        String charset = (('A'..'Z') + ('0'..'9')).join()
-        String statut = "En cours"
-        String code = RandomStringUtils.random(8, charset)
-        demandeVisiteInstance = new DemandeVisite(code: code, statut: statut, debutPeriode: params.debutPeriode,
-                finPeriode: params.finPeriode, nbPersonnes: params.nbPersonnes)
 
-        println "Validate" + demandeVisiteInstance.validate()
+        demandeVisiteInstance = new DemandeVisite(statut: "en cours", debutPeriode: params.debutPeriode,
+                finPeriode: params.finPeriode, nbPersonnes: params.nbPersonnes)
+        demandeVisiteService.createCodeForDemandeVisite(demandeVisiteInstance)
+
         if (demandeVisiteInstance == null) {
             notFound()
             return

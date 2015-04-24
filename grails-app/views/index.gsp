@@ -126,15 +126,6 @@
 					</fieldset>
 				</g:formRemote>
 			</div>
-
-			<div id="list-musee" class="content scaffold-list" role="main">
-
-					<tbody>
-
-					</tbody>
-				</table>
-
-			</div>
 			<g:if test="${session["musees"]}">
 				<div id="favMuseeList">
 					<table>
