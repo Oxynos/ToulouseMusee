@@ -126,6 +126,14 @@ class DemandeVisiteController {
         }
 
         if (demandeVisiteInstance.hasErrors()) {
+            if(demandeVisiteInstance.finPeriode < demandeVisiteInstance.debutPeriode) {
+                flash.message = "demande.invalid.enddate.size.message"
+                flash.args = [demandeVisiteInstance.finPeriode.dateString, demandeVisiteInstance.debutPeriode.dateString]
+            } else {
+                flash.message = "demande.invalid.begindate.size.message"
+                flash.args = [demandeVisiteInstance.debutPeriode.dateString, (new Date()).dateString]
+            }
+            flash.default = "Date invalide"
             respond demandeVisiteInstance.errors, view: 'demande'
             return
         }

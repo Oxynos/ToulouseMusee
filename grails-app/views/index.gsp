@@ -114,7 +114,7 @@
 						</div>
 						<div class="fieldcontain">
 							<label for="codePostal">Code Postal</label>
-							<g:select name="codePostal" from="${[""]+Adresse.list().codePostal.unique()}"/>
+							<g:select name="codePostal" from="${[""]+Adresse.list().codePostal.unique().sort()}"/>
 						</div>
 						<div class="fieldcontain">
 							<label for="adresseMusee">Rue</label>
