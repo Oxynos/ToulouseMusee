@@ -87,10 +87,10 @@ class DemandeVisiteServiceIntegrationSpec extends IntegrationSpec {
         DemandeVisite.findById(resultDemande.id) != null
 
         and: "la demande a bien le premier musée passé en paramètre"
-        resultDemande.musees.getAt(0) == unMusee
+        resultDemande.musees.contains(unMusee)
 
         and: "la demande a bien le second musée passé en paramètre"
-        resultDemande.musees.getAt(1) == unMusee2
+        resultDemande.musees.contains(unMusee2)
     }
 
     void "test suppression d'une demande de visite"() {

@@ -17,6 +17,5 @@ class Adresse {
     @Override
     String toString() {
         return "$numero $rue, $codePostal $ville"
-        //return "$numero $rue, $codePostal $ville (Secteur $secteur, Quartier $quartier)"
     }
 }

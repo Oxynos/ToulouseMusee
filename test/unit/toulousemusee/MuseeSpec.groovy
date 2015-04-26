@@ -63,4 +63,18 @@ class MuseeSpec extends Specification {
         unNom|desHoraires|unTelephone|unAccesM|unAccesB|uneAdresse|unGestionnaire
         "un nom"|"horaires"|"un telephone"|"acces metro"|"acces bus"|Mock(Adresse)|Mock(Gestionnaire)
     }
+
+    void"la chaine de caractère renvoyée par toString est celle correspondante"(String unNom, String desHoraires, String unTelephone,
+                                                                                String unAccesM, String unAccesB, Adresse uneAdresse, Gestionnaire unGestionnaire) {
+        given: "un nom, des horaires, un telephone, un acces metro et bus, une adresse et un gestionnaire initialisés correctement"
+        Musee musee = new Musee(nom: unNom, horairesOuverture: desHoraires, telephone: unTelephone,
+                accesMetro: unAccesM, accesBus: unAccesB, adresse: uneAdresse, gestionnaire: unGestionnaire)
+
+        expect: "la chaine de caractères correspond"
+        musee.toString() == "$unNom ($unGestionnaire)\n$uneAdresse\n$desHoraires\nTéléphone : $unTelephone \nAccès métro : $unAccesM\nAccès bus : $unAccesB"
+
+        where:
+        unNom|desHoraires|unTelephone|unAccesM|unAccesB|uneAdresse|unGestionnaire
+        "un nom"|"horaires"|"un telephone"|"acces metro"|"acces bus"|Mock(Adresse)|Mock(Gestionnaire)
+    }
 }
