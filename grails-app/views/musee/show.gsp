@@ -72,7 +72,7 @@
 				<li class="fieldcontain">
 					<span id="adresse-label" class="property-label"><g:message code="musee.adresse.label" default="Adresse" /></span>
 					
-						<span class="property-value" aria-labelledby="adresse-label"><g:link controller="adresse" action="show" id="${museeInstance?.adresse?.id}">${museeInstance?.adresse?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="adresse-label">${museeInstance?.adresse}</span>
 					
 				</li>
 				</g:if>
@@ -87,12 +87,11 @@
 				</g:if>
 			
 			</ol>
-			<g:form url="[resource:museeInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${museeInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+			<div class="button" role="button">
+				<ul>
+					<li><a class="home" href="${createLink(uri: '/')}">Retour à l'accueil</a></li>
+				</ul>
+			</div>
 		</div>
 	</body>
 </html>

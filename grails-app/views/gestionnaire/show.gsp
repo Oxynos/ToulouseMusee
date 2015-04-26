@@ -44,12 +44,11 @@
 				</g:if>
 			
 			</ol>
-			<g:form url="[resource:gestionnaireInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${gestionnaireInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+			<div class="button" role="button">
+				<ul>
+					<li><a class="home" href="${createLink(uri: '/')}">Retour à l'accueil</a></li>
+				</ul>
+			</div>
 		</div>
 	</body>
 </html>
