@@ -520,7 +520,7 @@ th:hover, tr:hover {
 
 /* ACTION BUTTONS */
 
-.buttons {
+.buttons:enabled {
 	background-color: #0040FF;
 	overflow: hidden;
 	padding: 0.3em;
@@ -532,6 +532,22 @@ th:hover, tr:hover {
 	color:  #FFFFFF;
 	border-radius: 10px;
 }
+
+.buttons:disabled, .buttons input:disabled,
+.buttons a:disabled, .buttons a:disabled{
+	background-color: #a6c9ff;
+	overflow: hidden;
+	padding: 0.3em;
+	-moz-box-shadow: 0 0 3px 1px #aaaaaa;
+	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
+	box-shadow: 0 0 3px 1px #aaaaaa;
+	margin: 0.1em 0 0 0;
+	border: none;
+	color:  #FFFFFF;
+	cursor: default;
+
+}
+
 
 .buttons input,
 .buttons a {
@@ -551,8 +567,8 @@ th:hover, tr:hover {
 	        border-radius: 0.3em;
 }
 
-.buttons input:hover, .buttons input:focus,
-.buttons a:hover, .buttons a:focus {
+.buttons input:hover:enabled, .buttons input:focus:enabled,
+.buttons a:hover:enabled, .buttons a:focus:enabled {
 	background-color: #0040FF;
 	color: #ffffff;
 	outline: none;

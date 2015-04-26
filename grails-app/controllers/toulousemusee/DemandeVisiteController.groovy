@@ -39,7 +39,6 @@ class DemandeVisiteController {
             return
         }
 
-        //demandeVisiteInstance.save flush: true
         demandeVisiteService.insertOrUpdateDemandeVisiteForMusees(demandeVisiteInstance, demandeVisiteInstance.musees.asList())
 
         request.withFormat {
@@ -67,7 +66,6 @@ class DemandeVisiteController {
             return
         }
 
-        //demandeVisiteInstance.save flush: true
         demandeVisiteService.insertOrUpdateDemandeVisiteForMusees(demandeVisiteInstance,demandeVisiteInstance.musees.asList())
 
         request.withFormat {

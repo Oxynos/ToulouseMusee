@@ -31,6 +31,7 @@
         </thead>
         <tbody>
         <g:each in="${museeInstanceList}" status="i" var="museeInstance">
+            <g:set var="favourite" value="${session["musees"]?.contains(museeInstance)}" />
             <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                 <td><g:link action="show" id="${museeInstance.id}">${fieldValue(bean: museeInstance, field: "nom")}</g:link></td>
 
@@ -49,9 +50,9 @@
                 <td><g:form controller="musee">
                     <g:hiddenField name="id" value="${museeInstance.id}"/>
                     <fieldset class="buttons">
-                        <g:actionSubmit value=" + "
+                        <g:actionSubmit value="${favourite? "Favori" : " + "}"
                                         onclick="return confirm(/Voulez vous ajouter ${museeInstance.nom} à vos musées préférés ?/)" action="addMusee"
-                                        disabled="${session["musees"]?.contains(museeInstance)}" id="buttonMedium"/>
+                                        disabled="${favourite}" id="buttonLarge"/>
                     </fieldset>
                 </g:form>
                 </td>
